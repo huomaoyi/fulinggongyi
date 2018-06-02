@@ -5,46 +5,36 @@
 <template>
     <div class="login" @keydown.enter="handleSubmit">
         <div class="login-con">
-            <Card :bordered="false">
-                <p slot="title">
-                    <Icon type="log-in"></Icon>
-                    欢迎登录
-                </p>
-                <div class="form-con">
-                    <Form ref="loginForm" :model="form" :rules="rules">
-                        <FormItem prop="userName">
-                            <Input v-model="form.userName" placeholder="请输入用户名">
-                                <span slot="prepend">
-                                    <Icon :size="16" type="person"></Icon>
-                                </span>
-                            </Input>
-                        </FormItem>
-                        <FormItem prop="password">
-                            <Input type="password" v-model="form.password" placeholder="请输入密码">
-                                <span slot="prepend">
-                                    <Icon :size="14" type="locked"></Icon>
-                                </span>
-                            </Input>
-                        </FormItem>
-                        <FormItem>
-                            <Button @click="handleSubmit" type="primary" long>登录</Button>
-                        </FormItem>
-                    </Form>
-                    <p class="login-tip">输入任意用户名和密码即可</p>
-                </div>
-            </Card>
+             <el-form class="form-con" ref="loginForm" :model="form" :rules="rules" label-width="60px">
+                <el-form-item >
+                    <el-tag>欢迎登陆</el-tag>
+                </el-form-item>
+                <el-form-item label="用户名">
+                   <el-input prop="userName" v-model="form.userName" placeholder="请输入用户名"/>
+                </el-form-item>
+                <el-form-item label="密码" >
+                    <el-input prop="password" type="password" v-model="form.password" placeholder="请输入密码"/>
+                </el-form-item>      
+                <el-form-item class="login-con-click">
+                    <span class="wrapper">
+                        <el-button @click="handleSubmit" type="primary">登陆</el-button>
+                        <el-button @click="handleSubmit" type="primary">注册</el-button>
+                    </span>
+                </el-form-item>
+            </el-form>       
         </div>
     </div>
 </template>
 
 <script>
 import Cookies from 'js-cookie';
+
 export default {
     data () {
         return {
             form: {
-                userName: 'user',
-                password: 'password'
+                userName: '',
+                password: ''
             },
             rules: {
                 userName: [
@@ -64,11 +54,14 @@ export default {
                     Cookies.set('user', this.form.userName);
                     Cookies.set('password', this.form.password);
                     this.$store.commit('setAvator', '../../assets/avator.png');
+                    Cookies.set('access', 1);
+                    /*
                     if (this.form.userName === 'iview_admin') {
                         Cookies.set('access', 0);
                     } else {
                         Cookies.set('access', 1);
                     }
+                    */
                     /*
                     this.$router.push({
                         name: 'home_index'
@@ -81,16 +74,3 @@ export default {
     }
 };
 </script>
-
-
-<!--<template>
-  <div>
-login
-  </div>
-</template>
-<script>
-  export default {
-    name:'Login'
-  }
-</script>
--->
