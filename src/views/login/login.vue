@@ -28,6 +28,7 @@
 
 <script>
 import Cookies from 'js-cookie';
+import fundraisingVue from '../fundraising/fundraising.vue';
 
 export default {
     data () {
@@ -48,28 +49,18 @@ export default {
     },
     methods: {
         handleSubmit () {
-          
+          /*
             this.$refs.loginForm.validate((valid) => {
                 if (valid) {
                     Cookies.set('user', this.form.userName);
                     Cookies.set('password', this.form.password);
                     this.$store.commit('setAvator', '../../assets/avator.png');
                     Cookies.set('access', 1);
-                    /*
-                    if (this.form.userName === 'iview_admin') {
-                        Cookies.set('access', 0);
-                    } else {
-                        Cookies.set('access', 1);
-                    }
-                    */
-                    /*
-                    this.$router.push({
-                        name: 'home_index'
-                    });
-                    */
                 }
             });
+            */
             
+            this.$router.push({path: 'fundraising'});
         }
     }
 };
