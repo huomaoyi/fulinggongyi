@@ -48,6 +48,10 @@ import header from '../common/header/header.vue'
 import foot from '../common/foot/foot.vue'
 
 export default {
+    components: {
+      'tlgy-header': header,
+      'tlgy-foot': foot
+    },
     methods: {
       tableRowClassName({row, rowIndex}) {
         if (rowIndex === 1) {
