@@ -7,7 +7,7 @@
       <tlgy-header></tlgy-header>
         <el-container>
             <el-header class="title">费用使用情况</el-header>
-            <el-main>
+            <el-main class="panle">
                 <el-container>
                     <el-aside class="halfwidth">
                         <el-progress type="circle" :percentage="34" color="green"></el-progress>
@@ -21,7 +21,7 @@
             </el-main>
         </el-container>
         <el-container>
-            <el-main>
+            <el-main style="padding:0px;">
                  <el-table :data="tableData2" style="width: 100%" :row-class-name="tableRowClassName">
                     <el-table-column prop="date" label="时间" width="180"/>
                     <el-table-column  prop="applyamount" label="申请金额" width="180"/>
@@ -38,6 +38,10 @@ import header from '../../common/header/header.vue'
 import foot from '../../common/foot/foot.vue'
 
 export default {
+   components: {
+    'tlgy-header': header,
+    'tlgy-foot': foot
+  },
     methods: {
       tableRowClassName({row, rowIndex}) {
         if (rowIndex === 1) {

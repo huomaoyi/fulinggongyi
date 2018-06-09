@@ -5,7 +5,7 @@
 <template>
     <div class="fundraisinginfo">
       <tlgy-header></tlgy-header>
-        <el-container>
+        <el-container style="height:250px;">
             <el-header class="title">我的筹款</el-header>
             <el-main style="padding:0px; height:200px; margin:0 auto;">
                 <el-container class="moveleft halfwidth panle" style="margin-right:10px;">

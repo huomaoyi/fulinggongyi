@@ -8,6 +8,7 @@ import FundraisingSuccess from '../views/fundraising/fundraisingresult/success/s
 import FundraisingInfo from '../views/fundraisinginfo/fundraisinginfo'
 import ApplyForUsing from '../views/applyforusing/applyforusing'
 import FundraisingUsingInfo from '../views/applyforusing/fundraisingusinginfo/fundraisingusinginfo'
+import DonorRegister from '../views/donor/donorregister/donorregister'
 
 Vue.use(Router)
 
@@ -57,6 +58,11 @@ export default new Router({
       path: '/FundraisingUsingInfo',
       name: 'FundraisingUsingInfo',
       component: FundraisingUsingInfo
+    },
+    {
+      path: '/DonorRegister',
+      name: 'DonorRegister',
+      component: DonorRegister
     }
   ]
 })

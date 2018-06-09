@@ -16,10 +16,14 @@
                     <el-input prop="password" type="password" v-model="form.password" placeholder="请输入密码"/>
                 </el-form-item>      
                 <el-form-item class="login-con-click">
-                    <span class="wrapper">
-                        <el-button @click="handleSubmit" type="primary">登陆</el-button>
+                    <p class="wrapper">
+                        <el-button @click="gofundraising" type="primary">募捐人</el-button>
+                        <el-button @click="godonorregister" type="primary">捐款人</el-button>
+                        <!--<el-button @click="handleSubmit" type="primary">注册</el-button> -->
+                    </p>
+                    <p>
                         <el-button @click="handleSubmit" type="primary">注册</el-button>
-                    </span>
+                    </p>
                 </el-form-item>
             </el-form>       
         </div>
@@ -48,6 +52,12 @@ export default {
         };
     },
     methods: {
+        gofundraising () {
+            this.$router.push({path: 'fundraising'});
+        },
+        godonorregister () {
+            this.$router.push({path: 'donorregister'});
+        },
         handleSubmit () {
           /*
             this.$refs.loginForm.validate((valid) => {
@@ -61,7 +71,7 @@ export default {
             */
             
             this.$router.push({path: 'fundraising'});
-        }
+        },
     }
 };
 </script>

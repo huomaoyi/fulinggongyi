@@ -79,6 +79,11 @@
 import header from '../common/header/header.vue'
 import foot from '../common/foot/foot.vue'
 
+import Vue from 'vue'
+import QRCode from 'qrcode'
+
+Vue.use(QRCode)
+
 export default {
   data(){
     return{
@@ -100,36 +105,52 @@ export default {
     'tlgy-foot': foot
   },
    methods: {
-      handleRemove(file, fileList) {
-        console.log(file, fileList);
-      },
-      handlePreview(file) {
-        console.log(file);
-      },
-      handleExceed(files, fileList) {
-        this.$message.warning(`当前限制选择 6 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
-      },
-      beforeRemove(file, fileList) {
-        return this.$confirm(`确定移除 ${ file.name }？`);
-      },
-      handleSubmit () {
-          this.$router.push({path: 'fundraisingsuccess'});
-      },
-       createqrcode () {
-          this.$alert(`<img src='../../src/assets/copyright.png'/>`, '地址二维码', {
-          dangerouslyUseHTMLString: true
-        });
-      },
-        gofailed () {
-          this.$router.push({path: 'fundraisingfailed'});            
-      },
-        gosuccess () {
-          this.$router.push({path: 'fundraisingsuccess'});
-      },
-        goinfo () {
-          //this.$router.push({path: 'fundraisingfailed'});
-          this.$router.push({path: 'fundraisinginfo'});
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePreview(file) {
+      console.log(file);
+    },
+    handleExceed(files, fileList) {
+      this.$message.warning(`当前限制选择 6 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+    },
+    beforeRemove(file, fileList) {
+      return this.$confirm(`确定移除 ${ file.name }？`);
+    },
+    handleSubmit () {
+      if (Math.random() > 0.5){
+        this.$router.push({path: 'fundraisingsuccess'});
       }
+      else{
+        this.$router.push({path: 'fundraisingfailed'});
+      }
+    },
+      createqrcode () {
+        //this.$alert(`<img id='qrimg' src='../../src/assets/copyright.png'/>`, '地址二维码', {
+      this.$alert(`<p><canvas id='qrimg'/></canvas></p><p id=bitaddress></p>`, '地址二维码', {
+        dangerouslyUseHTMLString: true
+      });
+      
+      var userbitaddress = this.$store.state.bitaddress;
+      var bitaddress = document.getElementById('bitaddress');
+      var canvas = document.getElementById('qrimg');
+
+      bitaddress.innerText = userbitaddress;
+      QRCode.toCanvas(canvas, userbitaddress, function (error) {
+        if (error) console.error(error)
+            console.log('success!');
+      });
+    },
+      gofailed () {
+        this.$router.push({path: 'fundraisingfailed'});            
+    },
+      gosuccess () {
+        this.$router.push({path: 'fundraisingsuccess'});
+    },
+      goinfo () {
+        //this.$router.push({path: 'fundraisingfailed'});
+        this.$router.push({path: 'fundraisinginfo'});
     }
+  }
 }
 </script>

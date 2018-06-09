@@ -6,6 +6,7 @@
     <div class="applyforusing">
       <tlgy-header></tlgy-header>
         <el-container class="body">
+          <el-header class="title">使用募款申请</el-header>
           <el-main class="apptitle">
             <el-form ref="form"  label-width="150px">
               <el-form-item label="申请费用">
@@ -32,7 +33,7 @@
                   <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
                 </el-upload>
               </el-form-item>
-              <el-form-item>
+              <el-form-item id="actions">
                 <el-button  @click="handleSubmit" type="warning" round>提交申请</el-button>
               </el-form-item>
             </el-form>
