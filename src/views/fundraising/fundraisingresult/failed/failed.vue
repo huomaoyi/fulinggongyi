@@ -18,7 +18,7 @@
 
 <script>
 import header from '../../../common/header/header.vue'
-import foot from '../../../common/header/header.vue'
+import foot from '../../../common/foot/foot.vue'
 
 export default {
   components: {

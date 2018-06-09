@@ -7,32 +7,32 @@
       <tlgy-header></tlgy-header>
         <el-container>
             <el-header class="title">我的筹款</el-header>
-            <el-main>
-                <el-container class="moveleft halfwidth">
-                    <el-aside class="halfwidth">
+            <el-main style="padding:0px; height:200px; margin:0 auto;">
+                <el-container class="moveleft halfwidth panle" style="margin-right:10px;">
+                    <el-aside class="halfwidth circle">
                         <el-progress type="circle" :percentage="78" color="gray"></el-progress>
                     </el-aside>
-                    <el-main class="halfwidth">
-                        <el-row :gutter="25"><el-tag>我的目标筹款金额:10万</el-tag></el-row>
-                        <el-row :gutter="25"><el-tag>已捐款金额：7.8万</el-tag></el-row>
-                        <el-row :gutter="25"><el-tag>剩余捐款金额：2.2万</el-tag></el-row>
+                    <el-main class="halfwidth ">
+                        <el-row :gutter="25"><el-tag>我的目标筹款金额:10</el-tag></el-row>
+                        <el-row :gutter="25"><el-tag>已捐款金额7.8</el-tag></el-row>
+                        <el-row :gutter="25"><el-tag>剩余捐款金额：2.2</el-tag></el-row>
                     </el-main>
                 </el-container>
-                <el-container class="halfwidth">
-                    <el-aside class="halfwidth">
+                <el-container class="halfwidth panle">
+                    <el-aside class="halfwidth circle">
                         <el-progress type="circle" :percentage="80" color="yellow"></el-progress>
                     </el-aside>
                     <el-main class="halfwidth">
-                        <el-row :gutter="25"><el-tag>计划截止时间: 2018年6月15日</el-tag></el-row>
-                        <el-row :gutter="25"><el-tag>剩余天数：25天</el-tag></el-row>
+                        <el-row><el-tag>计划截止时间: 2018年6月15日</el-tag></el-row>
+                        <el-row><el-tag>剩余天数：25天</el-tag></el-row>
                     </el-main>
                 </el-container>               
             </el-main>
         </el-container>
         <el-container>
-            <el-header class="title record">筹款记录</el-header>
-            <el-main>
-                 <el-table :data="tableData2" style="width: 100%" :row-class-name="tableRowClassName">
+            <el-header class="title">筹款记录</el-header>
+            <el-main class="record">
+                 <el-table :data="tableData2" style="width:100%;" :row-class-name="tableRowClassName">
                     <el-table-column prop="date" label="时间" width="180"/>
                     <el-table-column  prop="name" label="捐款人" width="180"/>
                     <el-table-column prop="amount" label="捐款金额"/>

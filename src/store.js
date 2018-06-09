@@ -5,8 +5,8 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
-        appname:"福灵公益",
-        appnamepingying:"fulinggongyi"
+        appname:"图灵公益",
+        appnamepingying:"TuringCharity"
     }
   })
 

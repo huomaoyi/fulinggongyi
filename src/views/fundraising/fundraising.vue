@@ -28,15 +28,13 @@
                 <el-input v-model="form.amount"></el-input>
               </el-form-item>
               <el-form-item label="预期筹款截止时间">
-                <el-date-picker class="moveleft"
-                    v-model="form.deadline"
-                    type="date"
-                    placeholder="选择日期">
-                </el-date-picker>
+                <el-date-picker class="moveleft" v-model="form.deadline" type="datetime" align="right" placeholder="选择日期"></el-date-picker>
               </el-form-item>
               <el-form-item label="链克钱包地址">
-                <el-input v-model="form.liankeaddress"></el-input>
-                <el-input v-model="form.liankeaddress">生成二维码</el-input>
+                <el-row>
+                  <el-col :span="10"><el-input v-model="form.liankeaddress"></el-input></el-col>
+                  <el-col :span="4"><el-button  @click="createqrcode" type="success">生成二维码</el-button></el-col>
+                </el-row>
               </el-form-item>
               <el-form-item label="活动名称">
                 <el-input v-model="form.activityname"></el-input>
@@ -64,10 +62,10 @@
                   <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
                 </el-upload>
               </el-form-item>
-              <el-form-item>
-                <el-button  @click="handleSubmit" type="warning" round>提交申请</el-button>
-                <el-button  @click="gosuccess" type="success" round>申请成功</el-button>
-                <el-button  @click="gofailed" type="danger" round>提交失败</el-button>
+              <el-form-item id="actions">
+                <el-button @click="handleSubmit" type="warning" round>提交申请</el-button>
+                <!-- <el-button  @click="gosuccess" type="success" round>申请成功</el-button>
+                <el-button  @click="gofailed" type="danger" round>提交失败</el-button> -->
                 <el-button  @click="goinfo" type="info" round>我的筹款</el-button>
               </el-form-item>
             </el-form>
@@ -116,6 +114,11 @@ export default {
       },
       handleSubmit () {
           this.$router.push({path: 'fundraisingsuccess'});
+      },
+       createqrcode () {
+          this.$alert(`<img src='../../src/assets/copyright.png'/>`, '地址二维码', {
+          dangerouslyUseHTMLString: true
+        });
       },
         gofailed () {
           this.$router.push({path: 'fundraisingfailed'});            
