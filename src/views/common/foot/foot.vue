@@ -4,7 +4,13 @@
 
 <template>
     <el-container class="foot">
-      <el-header class="apptitle">{{appname}}</el-header>
+      <el-main class="copyright">
+        <p class="copyrightcontent">帮助&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;隐私&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;条款</p>
+        <p class="copyrightcontent">Copyright
+          <img src="../../../assets/copyright.png" class="copyrightimage"/>
+          2018 飞鸟团队
+        </p>
+        </el-main>
     </el-container>
 </template>
 

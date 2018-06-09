@@ -36,6 +36,7 @@
               </el-form-item>
               <el-form-item label="链克钱包地址">
                 <el-input v-model="form.liankeaddress"></el-input>
+                <el-input v-model="form.liankeaddress">生成二维码</el-input>
               </el-form-item>
               <el-form-item label="活动名称">
                 <el-input v-model="form.activityname"></el-input>
@@ -48,8 +49,20 @@
                   v-model="form.reason">
                 </el-input>
               </el-form-item>
-              <el-form-item label="相关图片">
-                <el-input v-model="form.images"></el-input>
+              <el-form-item label="相关资料">
+                <el-upload
+                  class="upload-demo moveleft"
+                  action="https://jsonplaceholder.typicode.com/posts/"
+                  :on-preview="handlePreview"
+                  :on-remove="handleRemove"
+                  :before-remove="beforeRemove"
+                  multiple
+                  :limit="6"
+                  :on-exceed="handleExceed"
+                  :file-list="form.fileList">
+                  <el-button size="small" type="primary">点击上传</el-button>
+                  <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+                </el-upload>
               </el-form-item>
               <el-form-item>
                 <el-button  @click="handleSubmit" type="warning" round>提交申请</el-button>
@@ -79,6 +92,7 @@ export default {
           iphone: '',
           amount: '',
           deadline: '',
+          fileList: [],
           reason: ''
         }
     }
@@ -88,19 +102,31 @@ export default {
     'tlgy-foot': foot
   },
    methods: {
-        handleSubmit () {
-            this.$router.push({path: 'fundraisingsuccess'});
-        },
-         gofailed () {
-            this.$router.push({path: 'fundraisingfailed'});            
-        },
-         gosuccess () {
-            this.$router.push({path: 'fundraisingsuccess'});
-        },
-         goinfo () {
-            //this.$router.push({path: 'fundraisingfailed'});
-            this.$router.push({path: 'fundraisinginfo'});
-        }
+      handleRemove(file, fileList) {
+        console.log(file, fileList);
+      },
+      handlePreview(file) {
+        console.log(file);
+      },
+      handleExceed(files, fileList) {
+        this.$message.warning(`当前限制选择 6 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+      },
+      beforeRemove(file, fileList) {
+        return this.$confirm(`确定移除 ${ file.name }？`);
+      },
+      handleSubmit () {
+          this.$router.push({path: 'fundraisingsuccess'});
+      },
+        gofailed () {
+          this.$router.push({path: 'fundraisingfailed'});            
+      },
+        gosuccess () {
+          this.$router.push({path: 'fundraisingsuccess'});
+      },
+        goinfo () {
+          //this.$router.push({path: 'fundraisingfailed'});
+          this.$router.push({path: 'fundraisinginfo'});
+      }
     }
 }
 </script>

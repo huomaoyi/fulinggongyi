@@ -14,8 +14,8 @@
                     </el-aside>
                     <el-main class="halfwidth">
                         <el-row :gutter="25"><el-tag>已申请次数:5次</el-tag></el-row>
-                        <el-row :gutter="25"><el-tag>已成功申请金额：6.6万</el-tag></el-row>
-                        <el-row :gutter="25"><el-tag>剩余募款金额：23.4万</el-tag></el-row>
+                        <el-row :gutter="25"><el-tag>已成功申请金额：6.6</el-tag></el-row>
+                        <el-row :gutter="25"><el-tag>剩余募款金额：23.4</el-tag></el-row>
                     </el-main>
                 </el-container>             
             </el-main>
@@ -52,12 +52,12 @@ export default {
       return {
         tableData2: [{
           date: '2018年5月18日  14:05',
-          applyamount: '2万元',
-          leftamount: '8万元',
+          applyamount: '2',
+          leftamount: '8',
         }, {
           date: '2018年5月19日  15:27',
-          applyamount: '1万元',
-          leftamount: '7万元'
+          applyamount: '1',
+          leftamount: '7'
         }, {
           date: '...',
           applyamount: '...',
