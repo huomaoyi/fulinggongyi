@@ -17,11 +17,7 @@
                 </el-form-item>      
                 <el-form-item class="login-con-click">
                     <p class="wrapper">
-                        <el-button @click="gofundraising" type="primary">募捐人</el-button>
-                        <el-button @click="godonorregister" type="primary">捐款人</el-button>
-                        <!--<el-button @click="handleSubmit" type="primary">注册</el-button> -->
-                    </p>
-                    <p>
+                        <el-button @click="gofundraising" type="primary">登录</el-button>
                         <el-button @click="handleSubmit" type="primary">注册</el-button>
                     </p>
                 </el-form-item>

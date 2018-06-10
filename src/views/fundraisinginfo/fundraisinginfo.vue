@@ -61,7 +61,7 @@ export default {
     components: {
       'tlgy-header': header,
       'tlgy-foot': foot
-    },  
+    },
     mounted(){ 
       var refundraising = document.getElementById("refundraising");
       refundraising.style.display = "none";
