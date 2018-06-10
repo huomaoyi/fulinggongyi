@@ -12,16 +12,16 @@
                     <el-aside class="halfwidth">
                         <el-progress type="circle" :percentage="34" color="green"></el-progress>
                     </el-aside>
-                    <el-main class="halfwidth">
-                        <el-row :gutter="25"><el-tag>已申请次数:5次</el-tag></el-row>
-                        <el-row :gutter="25"><el-tag>已成功申请金额：6.6</el-tag></el-row>
-                        <el-row :gutter="25"><el-tag>剩余募款金额：23.4</el-tag></el-row>
+                    <el-main class="halfwidth el-mainset">
+                      <p>已申请次数:5次</p>
+                      <p>已成功申请金额：6.6</p>
+                      <p>剩余募款金额：23.4</p>
                     </el-main>
                 </el-container>             
             </el-main>
         </el-container>
         <el-container>
-            <el-main style="padding:0px;">
+            <el-main class="el-mainset">
                  <el-table :data="tableData2" style="width: 100%" :row-class-name="tableRowClassName">
                     <el-table-column prop="date" label="时间" width="180"/>
                     <el-table-column  prop="applyamount" label="申请金额" width="180"/>

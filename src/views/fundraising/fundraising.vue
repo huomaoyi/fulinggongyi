@@ -33,7 +33,7 @@
               <el-form-item label="链克钱包地址">
                 <el-row>
                   <el-col :span="10"><el-input v-model="form.liankeaddress"></el-input></el-col>
-                  <el-col :span="4"><el-button  @click="createqrcode" type="success">生成二维码</el-button></el-col>
+                  <el-col :span="4"><el-button  @click="createqrcode" type="primary">生成二维码</el-button></el-col>
                 </el-row>
               </el-form-item>
               <el-form-item label="活动名称">
@@ -66,7 +66,7 @@
                 <el-button @click="handleSubmit" type="warning" round>提交申请</el-button>
                 <!-- <el-button  @click="gosuccess" type="success" round>申请成功</el-button>
                 <el-button  @click="gofailed" type="danger" round>提交失败</el-button> -->
-                <el-button  @click="goinfo" type="info" round>我的筹款</el-button>
+                <el-button  @click="goinfo" type="success" round>我的筹款</el-button>
               </el-form-item>
             </el-form>
           </el-main>

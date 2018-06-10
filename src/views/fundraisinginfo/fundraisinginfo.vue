@@ -12,23 +12,33 @@
                     <el-aside class="halfwidth circle">
                         <el-progress type="circle" :percentage="78" color="gray"></el-progress>
                     </el-aside>
-                    <el-main class="halfwidth ">
-                        <el-row :gutter="25"><el-tag>我的目标筹款金额:10</el-tag></el-row>
-                        <el-row :gutter="25"><el-tag>已捐款金额7.8</el-tag></el-row>
-                        <el-row :gutter="25"><el-tag>剩余捐款金额：2.2</el-tag></el-row>
+                    <el-main class="halfwidth el-mainset">
+                        <p>我的目标筹款金额：10</p>
+                        <p>已捐款金额：7.8</p>
+                        <p>剩余捐款金额：2.2</p>
                     </el-main>
                 </el-container>
                 <el-container class="halfwidth panle">
                     <el-aside class="halfwidth circle">
                         <el-progress type="circle" :percentage="80" color="yellow"></el-progress>
                     </el-aside>
-                    <el-main class="halfwidth">
-                        <el-row><el-tag>计划截止时间: 2018年6月15日</el-tag></el-row>
-                        <el-row><el-tag>剩余天数：25天</el-tag></el-row>
+                    <el-main class="halfwidth el-mainset">
+                      <p>计划截止时间：2018年6月15日</p>
+                      <p>剩余天数：25天</p>
                     </el-main>
                 </el-container>               
             </el-main>
         </el-container>
+         <el-container class="refundraising" id="refundraising">
+            <el-aside width="700px" class="refundraisingtitle">您的募捐截止时间已到，未能筹到目标金额，是否再次发起募捐？</el-aside>
+            <el-aside width="120px" class="refundraisingbutton"><el-button  @click="gofundraising" type="warning" round>发起募捐</el-button></el-aside>
+            <el-aside width="120px" class="refundraisingbutton"><el-button type="danger" @click="refundraisingcancel()" round>取消</el-button></el-aside>
+         </el-container>
+         <el-container class="refundraising" id="fundraisingcomplete">
+            <el-aside width="700px" class="refundraisingtitle">恭喜您！您的目标募款金额已经完成，请发起使用申请。</el-aside>
+            <el-aside width="120px" class="refundraisingbutton"><el-button  @click="goapplyforusing" type="warning" round>申请使用</el-button></el-aside>
+            <el-aside width="120px" class="refundraisingbutton"><el-button type="danger" @click="fundraisingcompletecancel()" round>取消</el-button></el-aside>
+         </el-container>
         <el-container>
             <el-header class="title">筹款记录</el-header>
             <el-main class="record">
@@ -51,6 +61,13 @@ export default {
     components: {
       'tlgy-header': header,
       'tlgy-foot': foot
+    },  
+    mounted(){ 
+      var refundraising = document.getElementById("refundraising");
+      refundraising.style.display = "none";
+
+      var fundraisingcomplete = document.getElementById("fundraisingcomplete");
+      fundraisingcomplete.style.display = "none";
     },
     methods: {
       tableRowClassName({row, rowIndex}) {
@@ -60,6 +77,20 @@ export default {
           return 'success-row';
         }
         return '';
+      },
+      gofundraising(){
+        this.$router.push({path: 'fundraising'});
+      },
+      goapplyforusing(){
+        this.$router.push({path: 'applyforusing'});
+      },
+      refundraisingcancel(){
+        var element = document.getElementById("refundraising");
+        element.style.display = "none";
+      },
+       fundraisingcompletecancel(){
+        var element = document.getElementById("fundraisingcomplete");
+        element.style.display = "none";
       }
     },
     data() {
@@ -79,11 +110,11 @@ export default {
         }, {
           date: '2018年5月12日  10:27',
           name: '张金龙',
-          amount: '2000元'
+          amount: '2500元'
         }, {
           date: '2018年5月24日  09:27',
           name: '范梦洋',
-          amount: '2000元'
+          amount: '1500元'
         }, {
           date: '...',
           name: '...',
