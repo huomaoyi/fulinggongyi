@@ -7,7 +7,7 @@
         <div class="login-con">
              <el-form class="form-con" ref="loginForm" :model="form" :rules="rules" label-width="60px">
                 <el-form-item >
-                    <el-tag>欢迎登陆</el-tag>
+                    <p class="apptitle">{{apptitle}}</p>
                 </el-form-item>
                 <el-form-item label="用户名">
                    <el-input prop="userName" v-model="form.userName" placeholder="请输入用户名"/>
@@ -37,6 +37,7 @@ export default {
                 userName: '',
                 password: ''
             },
+            apptitle: this.$store.state.appname,
             rules: {
                 userName: [
                     { required: true, message: '账号不能为空', trigger: 'blur' }
