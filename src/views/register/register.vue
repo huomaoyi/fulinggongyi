@@ -1,9 +1,9 @@
 <style lang="less">
-    @import './donorregister.less';
+    @import './register.less';
 </style>
 
 <template>
-    <div class="donorregister">
+    <div class="register">
       <tlgy-header></tlgy-header>
         <el-container class="body">
           <el-main class="apptitle">
@@ -21,15 +21,11 @@
               <el-form-item label="电话">
                 <el-input v-model="form.iphone"></el-input>
               </el-form-item>
-              <el-form-item label="捐款金额">
-                <el-input v-model="form.amount"></el-input>
-              </el-form-item>
               <el-form-item label="链克钱包地址">
                 <el-input v-model="form.liankeaddress"></el-input>
               </el-form-item>
               <el-form-item id="actions">
-                <el-button @click="handleSubmit" type="warning" round>我要捐钱</el-button>
-                <!--<el-button  @click="goinfo" type="info" round>我的筹款</el-button>-->
+                <el-button @click="handleSubmit" type="warning" round>登录</el-button>
               </el-form-item>
             </el-form>
           </el-main>
@@ -39,8 +35,8 @@
 </template>
 
 <script>
-import header from '../../common/header/header.vue'
-import foot from '../../common/foot/foot.vue'
+import header from '../common/header/header.vue'
+import foot from '../common/foot/foot.vue'
 
 import Vue from 'vue'
 import QRCode from 'qrcode'
@@ -55,8 +51,7 @@ export default {
           gender:'',
           iphone: '',
           email: '',
-          liankeaddress: '',
-          amount: ''
+          liankeaddress: ''
         }
     }
   },
@@ -64,9 +59,12 @@ export default {
     'tlgy-header': header,
     'tlgy-foot': foot
   },
+  mounted: function () {
+    document.getElementById("navigate").style.display = "none";
+  },
    methods: {
     handleSubmit () {
-      this.$router.push({path: 'fundraisingcompelete'});
+      this.$router.push({path: 'login'});
     }
   }
 }

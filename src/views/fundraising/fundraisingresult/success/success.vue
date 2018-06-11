@@ -10,7 +10,7 @@
             <el-main class="panle">
                 <p class="highlight">恭喜您</p>
                 <p>您已经具备筹款条件，请您仔细阅读筹款合约。并保存您的收款地址和密码。</p>
-                <el-button @click="goapplyforusing" type="success">发起使用申请</el-button>
+                <!--<el-button @click="goapplyforusing" type="success">发起使用申请</el-button> -->
             </el-main>
         </el-container>
         <tlgy-foot></tlgy-foot>

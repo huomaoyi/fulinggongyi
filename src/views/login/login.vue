@@ -18,7 +18,7 @@
                 <el-form-item class="login-con-click">
                     <p class="wrapper">
                         <el-button @click="gofundraising" type="primary">登录</el-button>
-                        <el-button @click="handleSubmit" type="primary">注册</el-button>
+                        <el-button @click="goregister" type="primary">注册</el-button>
                     </p>
                 </el-form-item>
             </el-form>       
@@ -52,8 +52,8 @@ export default {
         gofundraising () {
             this.$router.push({path: 'fundraising'});
         },
-        godonorregister () {
-            this.$router.push({path: 'donorregister'});
+        goregister () {
+            this.$router.push({path: 'register'});
         },
         handleSubmit () {
           /*

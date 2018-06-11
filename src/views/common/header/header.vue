@@ -40,13 +40,13 @@
           this.$router.push({path: 'fundraising'});
         }
         else if(key == "2"){
-          this.$router.push({path: 'fundraisinginfo'});
+          this.$router.push({path: 'fundraisingcompelete'});
         }
         else if(key == "3"){
-          this.$router.push({path: 'fundraisinginfo'});
+          this.$router.push({path: 'fundraisingcompelete'});
         }
         else if(key == "4"){
-          this.$router.push({path: 'fundraisinginfo'});
+          this.$router.push({path: 'fundraisingcompelete'});
         }
       }
   }

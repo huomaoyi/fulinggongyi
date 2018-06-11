@@ -66,7 +66,7 @@
                 <el-button @click="handleSubmit" type="warning" round>提交申请</el-button>
                 <!-- <el-button  @click="gosuccess" type="success" round>申请成功</el-button>
                 <el-button  @click="gofailed" type="danger" round>提交失败</el-button> -->
-                <el-button  @click="goinfo" type="success" round>我的筹款</el-button>
+                <!--<el-button  @click="goinfo" type="success" round>我的筹款</el-button>-->
               </el-form-item>
             </el-form>
           </el-main>
