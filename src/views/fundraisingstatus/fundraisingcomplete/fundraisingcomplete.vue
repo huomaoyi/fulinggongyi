@@ -32,7 +32,6 @@
          <el-container class="refundraising" id="fundraisingcompleted">
             <el-aside width="700px" class="refundraisingtitle">恭喜您！您的目标募款金额已经完成，请发起使用申请。</el-aside>
             <el-aside width="120px" class="refundraisingbutton"><el-button  @click="goapplyforusing" type="warning" round>申请使用</el-button></el-aside>
-            <el-aside width="120px" class="refundraisingbutton"><el-button type="danger" @click="fundraisingcompletecancel()" round>取消</el-button></el-aside>
          </el-container>
         <el-container>
             <el-header class="title">筹款记录</el-header>

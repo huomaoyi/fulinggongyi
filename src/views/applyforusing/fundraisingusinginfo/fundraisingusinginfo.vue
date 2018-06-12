@@ -6,7 +6,7 @@
     <div class="fundraisingusinginfo">
       <tlgy-header></tlgy-header>
         <el-container>
-            <el-header class="title">费用使用情况</el-header>
+            <el-header class="title">捐款使用情况</el-header>
             <el-main class="panle">
                 <el-container>
                     <el-aside class="halfwidth">
@@ -41,7 +41,7 @@ export default {
    components: {
     'tlgy-header': header,
     'tlgy-foot': foot
-  },
+    },
     methods: {
       tableRowClassName({row, rowIndex}) {
         if (rowIndex === 1) {

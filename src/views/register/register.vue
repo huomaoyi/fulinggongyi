@@ -8,7 +8,7 @@
         <el-container class="body">
           <el-main class="apptitle">
             <el-form ref="form"  label-width="150px">
-              <el-form-item label="姓名">
+              <el-form-item label="用户名">
                 <el-input v-model="form.name"></el-input>
               </el-form-item>
                <el-form-item label="性别">
@@ -25,7 +25,7 @@
                 <el-input v-model="form.liankeaddress"></el-input>
               </el-form-item>
               <el-form-item id="actions">
-                <el-button @click="handleSubmit" type="warning" round>登录</el-button>
+                <el-button @click="handleSubmit" type="warning" round>注册</el-button>
               </el-form-item>
             </el-form>
           </el-main>

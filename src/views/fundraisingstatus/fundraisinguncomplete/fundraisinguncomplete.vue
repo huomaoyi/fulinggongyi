@@ -32,7 +32,7 @@
          <el-container class="refundraising" id="refundraising">
             <el-aside width="700px" class="refundraisingtitle">您的募捐截止时间已到，未能筹到目标金额，是否再次发起募捐？</el-aside>
             <el-aside width="120px" class="refundraisingbutton"><el-button  @click="gofundraising" type="warning" round>再次募捐</el-button></el-aside>
-            <el-aside width="120px" class="refundraisingbutton"><el-button type="danger" @click="refundraisingcancel()" round>取消</el-button></el-aside>
+            <el-aside width="120px" class="refundraisingbutton"><el-button type="danger" @click="goapplyforusing" round>申请使用</el-button></el-aside>
          </el-container>
         <el-container>
             <el-header class="title">筹款记录</el-header>
@@ -66,12 +66,11 @@ export default {
         }
         return '';
       },
-      gofundraising(){
+       gofundraising(){
         this.$router.push({path: 'fundraising'});
       },
-      refundraisingcancel(){
-        var element = document.getElementById("refundraising");
-        element.style.display = "none";
+      goapplyforusing(){
+        this.$router.push({path: 'applyforusing'});
       }
     },
     data() {
