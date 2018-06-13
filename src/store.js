@@ -7,7 +7,7 @@ const store = new Vuex.Store({
     state: {
         appname:"图灵公益",
         appnamepingying:"TuringPublic",
-        bitaddress:'0x133A629D34777d6638D4C2022Ec7FcA8651f32C8'
+        bitaddress:'http://red.xunlei.com/html/guider.html?action=https%3A%2F%2Fsandbox-walletapi.onethingpcs.com%2Fapi%2Flinktest%2Ftx_info%2Fe453b2ba441bb8421ee890a7da9281e3'
     }
   })
 
