@@ -32,7 +32,7 @@
               </el-form-item>
               <el-form-item label="链克钱包地址">
                 <el-row>
-                  <el-col :span="10"><el-input v-model="form.liankeaddress"></el-input></el-col>
+                  <el-col :span="10"><el-input v-model="form.liankeaddress" id="liankeaddress"></el-input></el-col>
                   <el-col :span="4"><el-button  @click="createqrcode" type="primary">生成二维码</el-button></el-col>
                 </el-row>
               </el-form-item>
@@ -64,9 +64,6 @@
               </el-form-item>
               <el-form-item id="actions">
                 <el-button @click="handleSubmit" type="warning" round>提交申请</el-button>
-                <!-- <el-button  @click="gosuccess" type="success" round>申请成功</el-button>
-                <el-button  @click="gofailed" type="danger" round>提交失败</el-button> -->
-                <!--<el-button  @click="goinfo" type="success" round>我的筹款</el-button>-->
               </el-form-item>
             </el-form>
           </el-main>
@@ -95,6 +92,7 @@ export default {
           iphone: '',
           amount: '',
           deadline: '',
+          liankeaddress: this.$store.state.bitaddress,
           fileList: [],
           reason: ''
         }
@@ -125,21 +123,19 @@ export default {
         this.$router.push({path: 'fundraisingfailed'});
       }
     },
-      createqrcode () {
-        //this.$alert(`<img id='qrimg' src='../../src/assets/copyright.png'/>`, '地址二维码', {
-      this.$alert(`<p><canvas id='qrimg'/></canvas></p><p id=bitaddress></p>`, '地址二维码', {
+    createqrcode () {
+      this.$alert(`<p><canvas id='qrimg'/></canvas></p><p id='bitaddress'></p>`, '地址二维码', {
         dangerouslyUseHTMLString: true
-      });
-      
-      var userbitaddress = this.$store.state.bitaddress;
-      var bitaddress = document.getElementById('bitaddress');
-      var canvas = document.getElementById('qrimg');
-
-      bitaddress.innerText = userbitaddress;
-      QRCode.toCanvas(canvas, userbitaddress, function (error) {
-        if (error) console.error(error)
+    }).then(() => {
+          var userbitaddress = this.$store.state.bitaddress;
+          var bitaddress = document.getElementById('bitaddress');
+          var canvas = document.getElementById('qrimg');
+          
+          QRCode.toCanvas(canvas, userbitaddress, function (error) {
+          if (error) console.error(error)
             console.log('success!');
       });
+    });
     },
       gofailed () {
         this.$router.push({path: 'fundraisingfailed'});            

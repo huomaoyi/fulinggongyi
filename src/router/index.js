@@ -12,6 +12,7 @@ import FundraisingUncompelete from '../views/fundraisingstatus/fundraisinguncomp
 import ApplyForUsing from '../views/applyforusing/applyforusing'
 import FundraisingUsingInfo from '../views/applyforusing/fundraisingusinginfo/fundraisingusinginfo'
 import DonorRegister from '../views/donor/donorregister/donorregister'
+import DonorNow from '../views/donor/donornow/donornow'
 
 Vue.use(Router)
 
@@ -81,6 +82,11 @@ export default new Router({
       path: '/DonorRegister',
       name: 'DonorRegister',
       component: DonorRegister
+    },
+    {
+      path: '/DonorNow',
+      name: 'DonorNow',
+      component: DonorNow
     }
   ]
 })

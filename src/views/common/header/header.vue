@@ -11,8 +11,8 @@
             <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
             <el-menu-item index="1">我要募款</el-menu-item>
             <el-menu-item index="2">我的筹款</el-menu-item>
-            <el-menu-item index="4">我要捐款</el-menu-item>
-            <el-menu-item index="3">我的捐款</el-menu-item>
+            <el-menu-item index="3">我要捐款</el-menu-item>
+            <el-menu-item index="4">我的捐款</el-menu-item>
           </el-menu>
           <div class="line"></div>
           </el-col>
@@ -43,7 +43,7 @@
           this.$router.push({path: 'fundraisingcompelete'});
         }
         else if(key == "3"){
-          this.$router.push({path: 'fundraisingcompelete'});
+          this.$router.push({path: 'donornow'});
         }
         else if(key == "4"){
           this.$router.push({path: 'fundraisingcompelete'});
