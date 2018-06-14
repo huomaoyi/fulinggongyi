@@ -1,3 +1,5 @@
+//Thanks for https://ethereum.org/crowdsale
+//Thanks for https://ethereum.org/dao
 pragma solidity ^0.4.21;
 
 contract owned {
