@@ -58,69 +58,28 @@ export default {
     }
   },
    mounted:function(){
-
-        var posturl = "https://sandbox-walletapi.onethingpcs.com/api/linktest/tx_generate";
-        var postdata = {
-            email: "774392980@qq.com",
-	        to: "0x5c949f437ef1cd1fe2f0d6268931ff3f29b04662",
-	        value: "1000000000000000000",
-	        callback: "www.baidu.com",
-	        title: "transfer test",
-	        desc: "to yiyanwannian",
-        	tx_type: "tx_third",
-	        sign: "ad3e466a20449e2318c50f94fb4954dc"
-        };
-
-        this.$http.post(
-            posturl, 
-            postdata, 
-            {
-                emulateJSON:true, 
-                Host:"sandbox-walletapi.onethingpcs.com",
-                }).then(
-            function (res) {            
-                                  // 处理成功的结果
-                  alert(res.body.data.url);
-              
-            },function (err) {
-                // 处理失败的结果
-                alert("err");
-            });
-
 /*
-        $http.post(posturl, postdata).success(function(response, status, headers, config){  
-                if(response.status == 1){  
-                    alert("修改成功！");  
-                }  
-            });
-            */
-/*
-        alert("result.data.url");
-        this.$http.interceptors.push(function(request) {
-        request.method = 'POST';
-        request.headers.set('Host', 'sandbox-walletapi.onethingpcs.com');
-        request.headers.set('Content-Type', 'application/json;charset=utf-8');
-      
-       alert("result.data.url1");
-        return function(response) {
+     //alert("res.body.data.url");
+        this.$http.get("/pay/getPayUrl",{
+          //headers:{
+          //   'Access-Control-Allow-Origin': "true"
+         // }
+        }).then((res) => {
+            alert(res);
+        },(err) => {
+            alert("err");
+        });
+*/
 
-            // modify response
-            var result = response.body;
-            alert("result.data.url1");
-
-        }
-    });
-    */
-
-/*
-        var userbitaddress = this.$store.state.bitaddress;
+        //var userbitaddress = this.$store.state.bitaddress;
+        var userbitaddress = "url=http://red.xunlei.com/html/guider.html?action=https%3A%2F%2Fsandbox-walletapi.onethingpcs.com%2Fapi%2Flinktest%2Ftx_info%2Fd79b1a9ccb2f9d939b991db9c63795ef";
           var canvas = document.getElementById('qrimg');
           
           QRCode.toCanvas(canvas, userbitaddress, function (error) {
           if (error) console.error(error)
             console.log('success!');
         });
-        */
+        
    }
 }
 </script>
