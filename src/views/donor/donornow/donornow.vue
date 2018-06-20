@@ -15,6 +15,10 @@
                     <el-option label="小黄眼角膜修复" value="小黄眼角膜修复"></el-option>
                 </el-select>
               </el-form-item>
+               <el-form-item label="捐款金额(链克)">
+                <el-input v-model="form.amount" id="liankeamount" class="moveleft" style="width:100px;"></el-input>
+                <p id="liankeurl">{{liankeUrl}}</p>
+              </el-form-item>
               <el-form-item label="扫码捐款">
                 <p><canvas id='qrimg' class="moveleft"></canvas></p>
               </el-form-item>
@@ -44,6 +48,7 @@ export default {
     return{
        form: {
           project: '',
+          amount: 1,
           liankeaddress: this.$store.state.bitaddress
         }
     }
@@ -55,31 +60,30 @@ export default {
    methods: {
     handleRemove(file, fileList) {
       console.log(file, fileList);
+    },
+    refreshqr(){
+      var userbitaddress = "";
+      var amount = this.form.amount;
+
+      this.$http.get("/pay/getPayUrl/?amount=" + amount).then((res) => {
+        userbitaddress = res.data.data.url;
+        
+        var canvas = document.getElementById('qrimg');
+        QRCode.toCanvas(canvas, userbitaddress, function (error) {
+        if (error) console.error(error)
+          console.log('success!');
+        });
+      },(err) => {
+          alert("load qr failed");
+      });
+
+      return userbitaddress;
     }
   },
-   mounted:function(){
-/*
-     //alert("res.body.data.url");
-        this.$http.get("/pay/getPayUrl",{
-          //headers:{
-          //   'Access-Control-Allow-Origin': "true"
-         // }
-        }).then((res) => {
-            alert(res);
-        },(err) => {
-            alert("err");
-        });
-*/
-
-        //var userbitaddress = this.$store.state.bitaddress;
-        var userbitaddress = "url=http://red.xunlei.com/html/guider.html?action=https%3A%2F%2Fsandbox-walletapi.onethingpcs.com%2Fapi%2Flinktest%2Ftx_info%2Fd79b1a9ccb2f9d939b991db9c63795ef";
-          var canvas = document.getElementById('qrimg');
-          
-          QRCode.toCanvas(canvas, userbitaddress, function (error) {
-          if (error) console.error(error)
-            console.log('success!');
-        });
-        
-   }
+  computed:{
+    liankeUrl:function(){
+      return this.refreshqr();
+    }
+  }
 }
 </script>
