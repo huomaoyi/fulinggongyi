@@ -36,9 +36,10 @@
         <el-container>
             <el-header class="title">筹款记录</el-header>
             <el-main class="record">
-                 <el-table :data="tableData2" style="width:100%;" :row-class-name="tableRowClassName">
+                 <el-table :data="tableData2" style="width:100%" :row-class-name="tableRowClassName">
+                    <el-table-column label="" width="300"/>
                     <el-table-column prop="date" label="时间" width="180"/>
-                    <el-table-column  prop="name" label="捐款人" width="180"/>
+                    <el-table-column prop="name" label="捐款人" width="180"/>
                     <el-table-column prop="amount" label="捐款金额"/>
                 </el-table>
             </el-main>
@@ -57,10 +58,10 @@ export default {
       'tlgy-foot': foot
     },
     mounted(){ 
-      var refundraising = document.getElementById("refundraising");
+      let refundraising = document.getElementById("refundraising");
       refundraising.style.display = "none";
 
-      var fundraisingcomplete = document.getElementById("fundraisingcomplete");
+      let fundraisingcomplete = document.getElementById("fundraisingcomplete");
       fundraisingcomplete.style.display = "none";
     },
     methods: {
@@ -76,31 +77,31 @@ export default {
         this.$router.push({path: 'applyforusing'});
       },
        fundraisingcompletecancel(){
-        var element = document.getElementById("fundraisingcompleted");
+        let element = document.getElementById("fundraisingcompleted");
         element.style.display = "none";
       }
     },
     data() {
       return {
         tableData2: [{
-          date: '2018年4月15日  14:05',
-          name: '林晨',
+          date: '2018年9月15日  14:05',
+          name: '吴盼盼',
           amount: '2000元',
         }, {
-          date: '2018年4月30日  15:27',
+          date: '2018年8月30日  15:27',
           name: '周厚发',
           amount: '2000元'
         }, {
-          date: '2018年5月04日  09:27',
+          date: '2018年9月04日  09:27',
           name: '权力',
           amount: '2000元',
         }, {
-          date: '2018年5月12日  10:27',
-          name: '张金龙',
+          date: '2018年9月12日  10:27',
+          name: '焦珊',
           amount: '2500元'
         }, {
-          date: '2018年5月24日  09:27',
-          name: '范梦洋',
+          date: '2018年8月24日  09:27',
+          name: '蓝天鸣',
           amount: '1500元'
         }, {
           date: '...',

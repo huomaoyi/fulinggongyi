@@ -7,7 +7,7 @@ const store = new Vuex.Store({
     state: {
         appname:"图灵公益",
         appnamepingying:"TuringPublic",
-        bitaddress:'0x5c949f437ef1cd1fe2f0d6268931ff3f29b04662'
+        bitaddress:'0x4256bC4F0eB5685936B55c13d40D0012DCa409F2'
     }
   })
 

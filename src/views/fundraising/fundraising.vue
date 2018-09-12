@@ -30,7 +30,7 @@
               <el-form-item label="预期筹款截止时间">
                 <el-date-picker class="moveleft" v-model="form.deadline" type="datetime" align="right" placeholder="选择日期"></el-date-picker>
               </el-form-item>
-              <el-form-item label="链克钱包地址">
+              <el-form-item label="筹款钱包地址">
                 <el-row>
                   <el-col :span="10"><el-input v-model="form.liankeaddress" id="liankeaddress"></el-input></el-col>
                   <el-col :span="4"><el-button  @click="createqrcode" type="primary">生成二维码</el-button></el-col>
