@@ -1,0 +1,21 @@
+getUserInfoByAddress(userAddress)
+getProjectInfoByProjectAddress(projectAddress)
+getProjectInfoByCreateAddress(userAddress)
+getProjectTransferInfoByAddress(projectAddress)
+getProjectTransferInfoById(transferId)
+getStageInfo(projectAddress, stageId)
+getStageInfoById(stageId)
+getStageVoteInfo(projectAddress, stageId)
+getStageUserVoteInfo(projectAddress, userAddress, stageId)
+getStageUserVoteById(voteId)
+
+返回的数据结构都是当前表的数据结构
+
+addProject(project) 
+addProjectTransfer(projectTransfer)
+addStage(stage)
+addVote(vote)
+
+返回值是bool
+
+这里需要考虑传入的参数以什么形式传入，struct还是string，（最好是struct）
