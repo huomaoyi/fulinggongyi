@@ -6,7 +6,8 @@
     <el-container class="header">
       <el-header class="movemiddle">
         <el-row :gutter="5">
-          <el-col :span="3" class="moveleft"><span>{{appname}}</span></el-col>
+          <el-col :span="19"><span>{{appname}}</span></el-col>          
+          <!--
           <el-col :span="12" class="moveleft" id="navigate">
             <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
             <el-menu-item index="1">我要募款</el-menu-item>
@@ -16,6 +17,7 @@
           </el-menu>
           <div class="line"></div>
           </el-col>
+          -->
           <el-col :span="2" class="moveright movemiddle username">feiniao</el-col>
           <el-col :span="1" class="moveright"><img src="../../../assets/avator.png" class="avator moveright"/></el-col>
           <el-col :span="1" class="moveright"><i class="el-icon-bell movemiddle tlgyicon moveright"></i></el-col>
