@@ -6,7 +6,9 @@
     <div class="fundraisinginfo">
       <tlgy-header></tlgy-header>
         <el-container style="height:250px;">
-            <el-header class="title">{{elements.title_label}}</el-header>
+            <el-header class="title">{{elements.title_label}}
+              <el-button class="gotostageinfo" @click="gotoApplyForUsing" type="warning" round>{{elements.stage_info_button}} ></el-button>
+            </el-header>
             <el-main style="padding:0px; height:200px; margin:0 auto;">
                 <el-container class="moveleft halfwidth panle" style="margin-right:10px;">
                     <el-aside class="halfwidth circle">
@@ -25,9 +27,16 @@
                     <el-main class="halfwidth el-mainset">
                       <p>{{elements.endtime_text}}: {{fundraisingInfo.endTime}}</p>
                       <p>{{elements.leftdays_text}}: {{fundraisingInfo.leftTime}}</p>
+                      <p>{{elements.status_text}}: {{fundraisingInfo.status}}</p>
                     </el-main>
                 </el-container>               
             </el-main>
+        </el-container>
+        <el-container>
+            <el-header class="title applyforusetext" :class="{'block': applyForUseSuccessful, 'none': !applyForUseSuccessful}">{{elements.apply_for_use_text}}
+              <el-button @click="gotoApplyForUsing" type="warning" round>{{elements.apply_for_use_button}}</el-button>
+            </el-header>
+            <el-header class="title applyforusetext" :class="{'block': applyForUseFailed, 'none': !applyForUseFailed}">{{elements.fundraising_failed_text}}</el-header>
         </el-container>
         <el-container>
             <el-header class="title">{{elements.record_table_label}}</el-header>
@@ -52,7 +61,8 @@ import foot from '../../common/foot/foot.vue'
 const mockData = require("../../../libs/mockdata.js").Data;
 const storage = require("../../../libs/storage.js");
 const tools = require("../../../libs/tools.js");
-const strings = require("../../../libs/strings.js").strings;
+const strings = require("../../../libs/strings.js").strings.fundraisingInfo;
+const stringspro = require("../../../libs/strings.js").strings;
 
 export default {
     components: {
@@ -67,6 +77,9 @@ export default {
           return 'success-row';
         }
         return '';
+      },
+      gotoApplyForUsing () {
+          this.$router.push({path: 'applyforusing'});
       }
     },
     data() {
@@ -82,34 +95,62 @@ export default {
         receivedAmount: receivedSum,
         needAmount: project.amount - receivedSum,
         endTime: project.endTime,
-        leftTime: leftTime
+        leftTime: leftTime,
+        status: stringspro.enums.project_status[project.status]
       };
 
-      let transferInfos = [];
       let transfers = storage.getProjectTransfersInfoByProjectAddress(project.address);
+      let applyforusesuccessful = false;
+      let applyforusefailed = false;
+      
+      if (project.status == 1 && transfers.length == 0){
+        applyforusesuccessful = false;
+        applyforusefailed = true;
+      }
+      else if (project.status == 1 && transfers.length > 0) {
+        applyforusesuccessful = true;
+        applyforusefailed = false;
+      }
+      else if (project.status == 2 && transfers.length == 0) {
+        applyforusesuccessful = false;
+        applyforusefailed = true;
+      }
+      else if (project.status == 2 && transfers.length > 0) {
+        applyforusesuccessful = false;
+        applyforusefailed = false;
+      }
+
+      let transferInfos = [];
       transfers.forEach(transfer => {
         transferInfos.push({
           time: transfer.time,
           userName: storage.getUserInfoByAddress(transfer.userAddress).userName,
           userAddress: transfer.userAddress,
           amount: transfer.amount,
-          operation: strings.enums.transfer_operation[transfer.operation]
+          operation: stringspro.enums.transfer_operation[transfer.operation]
         });
-      });      
+      });
 
       return {
         fundraisingInfo : fundraisingInfo,
         amountProgess: amountProgess,
         timeProgess: timeProgess,
         tableData: transferInfos,
+        applyForUseSuccessful: true,// applyforusesuccessful,
+        applyForUseFailed: applyforusefailed,
         elements: {
-          title_label: strings.fundraisingInfo.title_label,
-          target_amount_text: strings.fundraisingInfo.target_amount_text,
-          received_amount_text: strings.fundraisingInfo.received_amount_text,
-          need_amount_text: strings.fundraisingInfo.need_amount_text,
-          endtime_text: strings.fundraisingInfo.endtime_text,
-          leftdays_text: strings.fundraisingInfo.leftdays_text,
-          record_table_label: strings.fundraisingInfo.record_table_label
+          title_label: strings.title_label,
+          stage_info_button: strings.stage_info_button,
+          target_amount_text: strings.target_amount_text,
+          received_amount_text: strings.received_amount_text,
+          need_amount_text: strings.need_amount_text,
+          endtime_text: strings.endtime_text,
+          leftdays_text: strings.leftdays_text,
+          status_text: strings.status_text,
+          record_table_label: strings.record_table_label,
+          apply_for_use_text: strings.apply_for_use_text,
+          apply_for_use_button: strings.apply_for_use_button,
+          fundraising_failed_text: strings.fundraising_failed_text,
         }
       }
     }

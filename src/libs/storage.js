@@ -1,14 +1,7 @@
 const mockData = require("./mockData.js").Data;
 
 function getUserInfoByAddress(userAddress) {
-    let wantedUser = undefined;
-    mockData.Users.forEach(user => {
-        if (user.address === userAddress) {
-            wantedUser = user;
-        }
-    });
-
-    return wantedUser;
+    return mockData.Users.find(user => user.address === userAddress);
 }
 
 function getCurrentUserAddress() {
@@ -29,7 +22,7 @@ function getProjectInfoByCreateAddress(userAddress) {
 }
 
 function getProjectTransfersInfoByProjectAddress(projectAddress) {
-    return mockData.Transfers.filter(transfer => transfer.projectAddress == projectAddress);
+    return mockData.Transfers.filter(transfer => transfer.projectAddress == projectAddress) || [];
 }
 
 function getProjectTransferInfoById(transferId) {
@@ -48,14 +41,18 @@ function transferAmountConvert(transfer, ignoreWithdraw = true) {
     }
 }
 
-function getProjectTransferReceivedAmount(projectAddress) {
+function getProjectTransferReceivedAmount(projectAddress, ignoreWithdraw = true) {
     let sum = 0;
     getProjectTransfersInfoByProjectAddress(projectAddress)
         .forEach (transfer => {
-            sum += transferAmountConvert(transfer);
+            sum += transferAmountConvert(transfer, ignoreWithdraw);
         });
     
     return sum;
+}
+
+function getStagesInfoByProjectAddress(projectAddress) {
+    return mockData.Stages.filter( stage => stage.projectAddress === projectAddress) || [];
 }
 
 function getStageInfo(projectAddress, stageId) {
@@ -64,6 +61,10 @@ function getStageInfo(projectAddress, stageId) {
 
 function getStageInfoById(stageId) {
 
+}
+
+function getStageTotalCount() {
+    return mockData.Stages.length;
 }
 
 function getStageVoteInfo(projectAddress, stageId) {
@@ -107,7 +108,9 @@ module.exports.getProjectTransfersInfoByProjectAddress = getProjectTransfersInfo
 module.exports.getProjectTransferInfoById = getProjectTransferInfoById;
 module.exports.getProjectTransferReceivedAmount = getProjectTransferReceivedAmount;
 module.exports.getStageInfo = getStageInfo;
+module.exports.getStagesInfoByProjectAddress = getStagesInfoByProjectAddress;
 module.exports.getStageInfoById = getStageInfoById;
+module.exports.getStageTotalCount = getStageTotalCount;
 module.exports.getStageVoteInfo = getStageVoteInfo;
 module.exports.getStageUserVoteInfo = getStageUserVoteInfo;
 module.exports.getStageUserVoteById = getStageUserVoteById;

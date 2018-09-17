@@ -9,7 +9,7 @@ import FundraisingSuccess from '../views/fundraising/fundraisingresult/success/s
 import FundraisingInfo from '../views/fundraising/fundraisinginfo/fundraisinginfo'
 import FundraisingCompelete from '../views/fundraisingstatus/fundraisingcomplete/fundraisingcomplete'
 import FundraisingUncompelete from '../views/fundraisingstatus/fundraisinguncomplete/fundraisinguncomplete'
-import ApplyForUsing from '../views/applyforusing/applyforusing'
+import ApplyForUsing from '../views/fundraising/applyforusing/applyforusing'
 import FundraisingUsingInfo from '../views/applyforusing/fundraisingusinginfo/fundraisingusinginfo'
 import DonorRegister from '../views/donor/donorregister/donorregister'
 import DonorNow from '../views/donor/donornow/donornow'

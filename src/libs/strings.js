@@ -7,6 +7,11 @@ const ZH_CN = {
             "转入",
             "撤回",
             "剩余返回"
+        ],
+        project_status:[
+            "筹款中",
+            "已筹完",
+            "已结束"
         ]
     },
     login: {
@@ -33,12 +38,21 @@ const ZH_CN = {
     },
     fundraisingInfo: {
         title_label: "我的筹款",
+        stage_info_button: "查看阶段信息",
         target_amount_text: "我的目标筹款金额",
         received_amount_text: "已捐款金额",
         need_amount_text: "剩余捐款金额",
         endtime_text: "计划截止时间",
         leftdays_text: "剩余时间",
-        record_table_label: "筹款记录"
+        status_text: "筹款状态",
+        record_table_label: "筹款记录",
+        apply_for_use_text: "您的筹款已完成，您可以发起使用申请！",
+        apply_for_use_button: "申请使用",
+        fundraising_failed_text: "很遗憾，您的筹款失败了"
+    },
+    applyforusing: {
+        apply_for_use_text: "使用募款申请",
+        apply_for_use_submit: "提交申请",
     }
 }
 
