@@ -67,16 +67,16 @@ function getStageTotalCount() {
     return mockData.Stages.length;
 }
 
-function getStageVoteInfo(projectAddress, stageId) {
-
+function getStageVotesInfo(projectAddress, stageId) {
+    return mockData.StageVotes.filter(vote => vote.projectAddress === projectAddress && vote.stageId === stageId) || [];
 }
 
 function getStageUserVoteInfo(projectAddress, userAddress, stageId) {
-
+    return mockData.StageVotes.find(vote => vote.projectAddress === projectAddress && vote.userAddress === userAddress && vote.stageId === stageId);
 }
 
 function getStageUserVoteById(voteId) {
-
+    return mockData.StageVotes.find(vote => vote.id === voteId);
 }
 
 function updateUserInfo(userInfo) {
@@ -111,7 +111,7 @@ module.exports.getStageInfo = getStageInfo;
 module.exports.getStagesInfoByProjectAddress = getStagesInfoByProjectAddress;
 module.exports.getStageInfoById = getStageInfoById;
 module.exports.getStageTotalCount = getStageTotalCount;
-module.exports.getStageVoteInfo = getStageVoteInfo;
+module.exports.getStageVotesInfo = getStageVotesInfo;
 module.exports.getStageUserVoteInfo = getStageUserVoteInfo;
 module.exports.getStageUserVoteById = getStageUserVoteById;
 

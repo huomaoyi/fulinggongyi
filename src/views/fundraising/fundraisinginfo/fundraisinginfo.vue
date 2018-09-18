@@ -7,7 +7,7 @@
       <tlgy-header></tlgy-header>
         <el-container style="height:250px;">
             <el-header class="title">{{elements.title_label}}
-              <el-button class="gotostageinfo" @click="gotoApplyForUsing" type="warning" round>{{elements.stage_info_button}} ></el-button>
+              <el-button class="gotostageinfo" @click="gotoStagesInfo" type="warning" round>{{elements.stage_info_button}} ></el-button>
             </el-header>
             <el-main style="padding:0px; height:200px; margin:0 auto;">
                 <el-container class="moveleft halfwidth panle" style="margin-right:10px;">
@@ -58,7 +58,6 @@
 import header from '../../common/header/header.vue'
 import foot from '../../common/foot/foot.vue'
 
-const mockData = require("../../../libs/mockdata.js").Data;
 const storage = require("../../../libs/storage.js");
 const tools = require("../../../libs/tools.js");
 const strings = require("../../../libs/strings.js").strings.fundraisingInfo;
@@ -77,6 +76,9 @@ export default {
           return 'success-row';
         }
         return '';
+      },
+      gotoStagesInfo () {
+          this.$router.push({path: 'stagesinfo'});
       },
       gotoApplyForUsing () {
           this.$router.push({path: 'applyforusing'});
@@ -126,7 +128,7 @@ export default {
           time: transfer.time,
           userName: storage.getUserInfoByAddress(transfer.userAddress).userName,
           userAddress: transfer.userAddress,
-          amount: transfer.amount,
+          amount: transfer.operation === 0 ? transfer.amount : -transfer.amount,
           operation: stringspro.enums.transfer_operation[transfer.operation]
         });
       });

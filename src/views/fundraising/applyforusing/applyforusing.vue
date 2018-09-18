@@ -65,7 +65,7 @@ export default {
          this.$refs[formName].validate((valid) => {        
           if (valid) {
             this.$options.methods.submitStageInfo(this.$refs[formName].model);
-            this.$router.push({path: 'fundraisinginfo'});
+            this.$router.push({path: 'stagesinfo'});
           } else {
             console.log('validate failed!!');
             return false;

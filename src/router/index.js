@@ -7,6 +7,7 @@ import Fundraising from '../views/fundraising/fundraising'
 import FundraisingFailed from '../views/fundraising/fundraisingresult/failed/failed'
 import FundraisingSuccess from '../views/fundraising/fundraisingresult/success/success'
 import FundraisingInfo from '../views/fundraising/fundraisinginfo/fundraisinginfo'
+import StagesInfo from '../views/fundraising/stagesinfo/stagesinfo'
 import FundraisingCompelete from '../views/fundraisingstatus/fundraisingcomplete/fundraisingcomplete'
 import FundraisingUncompelete from '../views/fundraisingstatus/fundraisinguncomplete/fundraisinguncomplete'
 import ApplyForUsing from '../views/fundraising/applyforusing/applyforusing'
@@ -57,6 +58,11 @@ export default new Router({
       path: '/FundraisingInfo',
       name: 'FundraisingInfo',
       component: FundraisingInfo
+    },
+    {
+      path: '/StagesInfo',
+      name: 'StagesInfo',
+      component: StagesInfo
     },
     {
       path: '/FundraisingCompelete',

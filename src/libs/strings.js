@@ -12,6 +12,11 @@ const ZH_CN = {
             "筹款中",
             "已筹完",
             "已结束"
+        ],
+        stage_status:[
+            "无人同意",
+            "投票中",
+            "已完成"
         ]
     },
     login: {
@@ -53,6 +58,10 @@ const ZH_CN = {
     applyforusing: {
         apply_for_use_text: "使用募款申请",
         apply_for_use_submit: "提交申请",
+    },
+    stagesinfo: {
+        title_label: "阶段详情",
+        stage_progree: "当前阶段申请进度"
     }
 }
 
