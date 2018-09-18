@@ -43,7 +43,7 @@ export default {
             this.$router.push({path: 'fundraising'});
         },
         goregister () {
-            this.$router.push({path: 'register'});
+            this.$router.push({path: 'donornow'});
         }
     }
 };

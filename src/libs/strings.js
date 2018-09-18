@@ -62,6 +62,13 @@ const ZH_CN = {
     stagesinfo: {
         title_label: "阶段详情",
         stage_progree: "当前阶段申请进度"
+    },
+    donornow: {
+        project_text: "项目详情",
+        left_time_text: "剩余时间",
+        joined_count_text: "捐赠者人数",
+        need_amount_text:"还需",
+        recored_text: "捐款记录"
     }
 }
 

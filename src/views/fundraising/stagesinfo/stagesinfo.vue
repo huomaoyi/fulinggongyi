@@ -62,7 +62,7 @@ export default {
       let project = storage.getProjectInfoByCreateAddress(storage.getCurrentUserAddress());
       let stages = storage.getStagesInfoByProjectAddress(project.address);
       stages.map(stage => stage.status_text = stringsenums.stage_status[stage.status]);
-      
+
       let votes = storage.getStageVotesInfo(project.address, stages[stages.length - 1].index);
       let agreeCount = 0;
       votes.map(vote => vote.operation === 1 ? agreeCount++ : agreeCount + 0);      
@@ -76,7 +76,7 @@ export default {
           title_label: strings.title_label,
           stage_progree: strings.stage_progree
         }
-      }
+      };
     }
   }
 </script>
