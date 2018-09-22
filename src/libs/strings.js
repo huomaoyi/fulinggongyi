@@ -84,6 +84,30 @@ const ZH_CN = {
         complite_time_text: "共耗时",
         total_receviced_amount_text:"共筹款",
         stage_info_button: "查看阶段信息"
+    },
+    projectstageinfo: {
+        title_label: "项目阶段详情",
+        left_time_text: "剩余时间",
+        stage_text: "阶段",
+        joined_count_text: "捐赠者人数",
+        stage_title_text: "名称",
+        stage_amount_text: "金额",
+        stage_description_text: "描述",
+        stage_start_time_text: "开始时间",
+        stage_end_time_text: "结束时间",
+        need_amount_text: "还需金额",
+        user_left_amount_text: "您的剩余金额",
+        agreed_count_text: "本阶段已同意人数",
+        user_can_text: "您可以",
+        agree_button: "同意",
+        refuse_button: "拒绝",
+        stage_vote_text: "本阶段使用您的捐款的申请",
+        user_choose_text: "您已选择",
+        thanks_text: "多谢您至关重要的一票",
+        withdraw_text: "如果您觉得本次募捐项目存在重大问题，您可以对您剩下的款项",
+        create_withdraw_text: "发起撤回",
+        after_withdraw_text: "您已撤回您的剩余款项",
+        sorry_text: "对于本次募捐给您带来的不便，我们深表歉意！"
     }
 }
 

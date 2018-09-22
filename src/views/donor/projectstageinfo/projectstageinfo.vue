@@ -5,66 +5,57 @@
 <template>
     <div class="projectstageinfo">
       <tlgy-header></tlgy-header>
-      <el-container class="projectinfo">
-        <el-header class="title">{{elements.project_text}}</el-header>
-        <el-header class="split"></el-header>
-        <el-main class="carouselelmain">
-            <el-carousel indicator-position="outside">
-              <el-carousel-item v-for="project_info in project_infos" :key="project_info.address">
-                <div class="projectdata">
-                  <el-row>
-                    <el-col :span="3"><div class="grid-content bg-purple">{{elements.project_description_text}}</div></el-col>
-                    <el-col :span="21"><div class="grid-content bg-purple">{{project_info.project_description}}</div></el-col>
-                  </el-row>
-                  <el-row>
-                    <el-col :span="3"><div class="grid-content bg-purple">{{elements.amount_text}}</div></el-col>
-                    <el-col :span="9"><div class="grid-content bg-purple">{{project_info.amount}} {{unit_type}}</div></el-col>
-                    <el-col :span="3"><div class="grid-content bg-purple">{{elements.creator_alice_text}}</div></el-col>
-                    <el-col :span="9"><div class="grid-content bg-purple">{{project_info.creator_alice}}</div></el-col>
-                  </el-row>
-                  <el-row>
-                    <el-col :span="3"><div class="grid-content bg-purple">{{elements.creator_real_name_text}}</div></el-col>
-                    <el-col :span="9"><div class="grid-content bg-purple">{{project_info.creator_real_name}}</div></el-col>
-                    <el-col :span="3"><div class="grid-content bg-purple">{{elements.creator_id_number_text}}</div></el-col>
-                    <el-col :span="9"><div class="grid-content bg-purple">{{project_info.creator_id_number}}</div></el-col>
-                  </el-row>
-                  <el-row>
-                    <el-col :span="3"><div class="grid-content bg-purple">{{elements.creator_phone_number_text}}</div></el-col>
-                    <el-col :span="9"><div class="grid-content bg-purple">{{project_info.creator_phone_number}}</div></el-col>
-                    <el-col :span="2"><div class="grid-content bg-purple">{{elements.creator_home_address_text}}</div></el-col>
-                    <el-col :span="10"><div class="grid-content bg-purple">{{project_info.creator_home_address}}</div></el-col>
-                  </el-row>
-                  <el-row>
-                    <el-col :span="3"><div class="grid-content bg-purple">{{elements.project_start_time_text}}</div></el-col>
-                    <el-col :span="9"><div class="grid-content bg-purple">{{project_info.project_start_time}}</div></el-col>
-                    <el-col :span="3"><div class="grid-content bg-purple">{{elements.project_end_time_text}}</div></el-col>
-                    <el-col :span="9"><div class="grid-content bg-purple">{{project_info.project_end_time}}</div></el-col>
-                  </el-row>
-                  <el-row>
-                    <el-col :span="3"><div class="grid-content bg-purple">{{elements.project_detail_text}}</div></el-col>
-                    <el-col :span="21"><div class="grid-content bg-purple">{{project_info.project_detail}}</div></el-col>
-                  </el-row>
-                </div>
-                <el-container>
-                  <el-header class="statuspanle" :class="{'block': !project_info.is_fundrasing_finished, 'none': project_info.is_fundrasing_finished}">{{elements.left_time_text}}: {{project_info.left_time}}, {{elements.joined_count_text}}: {{project_info.joined_count}}, {{elements.need_amount_text}}: {{project_info.need_amount}} {{unit_type}}</el-header>
-                  <el-header class="statuspanle" :class="{'block': project_info.is_fundrasing_finished, 'none': !project_info.is_fundrasing_finished}">{{elements.fundraiser_complite_text}} {{elements.complite_time_text}}: {{project_info.complite_time}}, {{elements.joined_count_text}}: {{project_info.joined_count}}, {{elements.total_receviced_amount_text}}: {{project_info.total_receviced_amount}} {{unit_type}}
-                    &nbsp;&nbsp;&nbsp;<el-button @click="gotoProjectStageInfo(project.address)" type="warning" round>{{elements.stage_info_button}}</el-button>
-                  </el-header>
-                  <el-header class="title">{{elements.recored_text}}</el-header>
-                  <el-main class="record">
-                      <el-table :data="project_info.stages" style="width:100%" :row-class-name="tableRowClassName">
-                        <el-table-column prop="index" label="阶段" />
-                        <el-table-column prop="title" label="标题" />
-                        <el-table-column prop="amount" label="金额"/>
-                        <el-table-column prop="startTime" label="开始时间"/>
-                        <el-table-column prop="endTime" label="结束时间"/>
-                        <el-table-column prop="status_text" label="状态"/>
-                      </el-table>
-                  </el-main>
-                </el-container>
-              </el-carousel-item>
-            </el-carousel>
+      <el-container>
+        <el-header class="title">{{elements.title_label}}</el-header>
+        <el-header class="project_description">{{project_description}} ({{elements.joined_count_text}}: {{joined_count}}, {{elements.left_time_text}}: {{left_time}})</el-header>
+        <el-main>
+          <el-collapse v-model="activeName" accordion>
+            <el-collapse-item  v-for="stage in stages" :key="stage.index" :title="stage.title_text" :name="stage.index">
+              <el-row>
+                <el-col :span="3"><div class="grid-content bg-purple-light">{{elements.stage_title_text}}</div></el-col>
+                <el-col :span="9"><div class="grid-content bg-purple-light">{{stage.title}}</div></el-col>
+                <el-col :span="3"><div class="grid-content bg-purple-light">{{elements.stage_amount_text}}</div></el-col>
+                <el-col :span="9"><div class="grid-content bg-purple-light">{{stage.amount}} {{unit_type}}</div></el-col>
+              </el-row>
+               <el-row>
+                <el-col :span="3"><div class="grid-content bg-purple-light">{{elements.stage_start_time_text}}</div></el-col>
+                <el-col :span="9"><div class="grid-content bg-purple-light">{{stage.startTime}}</div></el-col>
+                <el-col :span="3"><div class="grid-content bg-purple-light">{{elements.stage_end_time_text}}</div></el-col>
+                <el-col :span="9"><div class="grid-content bg-purple-light">{{stage.endTime}}</div></el-col>
+              </el-row>
+              <el-row>
+                <el-col :span="3"><div class="grid-content bg-purple-light">{{elements.stage_description_text}}</div></el-col>
+                <el-col :span="21"><div class="grid-content bg-purple-light">{{stage.description}}</div></el-col>
+              </el-row>
+              <el-row>
+                <el-col :span="24">
+                    <div class="grid-content bg-purple">
+                      {{elements.need_amount_text}}: {{0}} {{unit_type}}, 
+                      {{elements.user_left_amount_text}}: {{0}} {{unit_type}}, 
+                      {{elements.agreed_count_text}}: {{1}}/{{10}}, 
+                      {{elements.user_can_text}}
+                      <el-button  @click="voteStage(stage.id, 1)" type="success">{{elements.agree_button}}</el-button> 
+                      <el-button  @click="voteStage(stage.id, 2)"type="danger">{{elements.refuse_button}}</el-button> 
+                      {{elements.stage_vote_text}}
+                    </div>
+                  </el-col>
+                  <el-col :span="24">
+                    <div class="grid-content bg-purple">
+                      {{elements.need_amount_text}}: {{0}} {{unit_type}}, 
+                      {{elements.user_left_amount_text}}: {{0}} {{unit_type}}, 
+                      {{elements.user_choose_text}}: {{elements.agree_button}}, 
+                      {{elements.agreed_count_text}}: {{1}}/{{10}}, 
+                      {{elements.thanks_text}}
+                    </div>
+                  </el-col>
+              </el-row>
+            </el-collapse-item>
+          </el-collapse>
         </el-main>
+        <el-footer class="withdraw">{{elements.withdraw_text}}
+          <el-button  @click="createWithdraw()"type="danger">{{elements.create_withdraw_text}}</el-button>
+        </el-footer>
+        <el-footer class="withdraw">{{elements.after_withdraw_text}}: {{10}} {{unit_type}}, {{elements.sorry_text}}</el-footer>
       </el-container>     
       <tlgy-foot></tlgy-foot>
     </div>
@@ -76,7 +67,7 @@ import foot from '../../common/foot/foot.vue'
 
 const storage = require("../../../libs/storage.js");
 const tools = require("../../../libs/tools.js");
-const strings = require("../../../libs/strings.js").strings.donornow;
+const strings = require("../../../libs/strings.js").strings.projectstageinfo;
 const stringsenums = require("../../../libs/strings.js").strings.enums;
 const settings = require("../../../libs/strings.js").strings.settings;
 
@@ -85,85 +76,67 @@ export default {
     'tlgy-header': header,
     'tlgy-foot': foot
   },
-   methods: {
-    handleRemove(file, fileList) {
-      console.log(file, fileList);
+  methods: {
+    voteStage(stageId, operation) {
+      storage.addVote({
+        id: storage.getVoteTotalCount() + 1,
+        stageId: stageId,
+        projectAddress: this.$route.query.project_address,
+        userAddress: storage.getCurrentUserAddress,
+        time: new Date,
+        operation: operation
+      });
     },
-    tableRowClassName({row, rowIndex}) {
-        if (rowIndex === 1) {
-          return 'warning-row';
-        } else if (rowIndex === 3) {
-          return 'success-row';
-        }
-        return '';
-      },
-    gotoProjectStageInfo(projectAddress) {
-      this.$router.push({path: 'projectstageinfo', params: {project_address: projectAddress}});
-      //this.$route.params.project_address
+    createWithdraw() {
+      storage.addProjectTransfer({
+        id: storage.getProjectTransferCount() + 1,
+        projectAddress: this.$route.query.project_address,
+        userAddress: storage.getCurrentUserAddress,
+        amount: 9999,
+        time: new Date,
+        operation: 1
+      });
     }
   },
   data() {
-    let project_infos = [];
-    let projects = storage.getAllFundrasingProjects();
-    
-    projects.forEach(project => {
-      let user = storage.getUserInfoByAddress(project.creator);
-      let stages = storage.getStagesInfoByProjectAddress(project.address);
-      stages.map(stage => stage.status_text = stringsenums.stage_status[stage.status]);
+    let projectAddress = this.$route.query.project_address;
+    let project = storage.getProjectInfoByProjectAddress(projectAddress); 
+    let stages = storage.getStagesInfoByProjectAddress(projectAddress);
+    stages.map(stage => stage.title_text = strings.stage_text + stage.index + ":" + stage.title);
 
-      let users = [];
-      let transfers = storage.getProjectTransfersInfoByProjectAddress(project.address).forEach(transfer => users.push(transfer.userAddress));
-      let userCount = Array.from(new Set(users)).length;
-      let receivedAmount = storage.getProjectTransferReceivedAmount(project.address);
+    let users = [];
+    let transfers = storage.getProjectTransfersInfoByProjectAddress(project.address).forEach(transfer => users.push(transfer.userAddress));
+    let userCount = Array.from(new Set(users)).length;
 
-      let applyforusesuccessful = false;
-      let applyforusefailed = false;
-      
-      project_infos.push({
-        project_address: project.address,
-        amount: project.amount,
-        creator_alice: user.userName,
-        creator_real_name: user.realName || "",
-        creator_id_number: user.idNumber || "",
-        creator_phone_number: user.phoneNumber || "",
-        creator_home_address: user.homeAddress || "",
-        project_start_time: project.startTime,
-        project_end_time: project.endTime,
-        project_detail: project.detail,
-        project_description: project.description,
-        left_time: new Date(project.endTime) < new Date ? "00:00:00:00" : tools.getTimeDistance(new Date(), project.endTime),
-        joined_count: userCount,
-        complite_time: tools.getTimeDistance(project.startTime, project.endTime),
-        need_amount: project.amount - receivedAmount,
-        total_receviced_amount: receivedAmount,
-        is_fundrasing_finished: project.status === 2,
-        stages: stages
-      });
-    });
-    
     return {
-      project_infos: project_infos,
+      project_description: project.description,
+      joined_count: userCount,
+      left_time: new Date(project.endTime) < new Date ? "00:00:00:00" : tools.getTimeDistance(new Date(), project.endTime),
+      activeName: 1,
+      stages: stages,
       unit_type: settings.unit_type,
       elements: {
-        amount_text: strings.amount_text,
-        creator_alice_text: strings.creator_alice_text,
-        creator_real_name_text: strings.creator_real_name_text,
-        creator_id_number_text: strings.creator_id_number_text,
-        creator_phone_number_text: strings.creator_phone_number_text,
-        creator_home_address_text: strings.creator_home_address_text,
-        project_start_time_text: strings.project_start_time_text,
-        project_end_time_text: strings.project_end_time_text,
-        project_detail_text: strings.project_detail_text,
-        project_description_text: strings.project_description_text,
-        project_text: strings.project_text,
+        title_label: strings.title_label,
         left_time_text: strings.left_time_text,
         joined_count_text: strings.joined_count_text,
+        stage_title_text: strings.stage_title_text,
+        stage_amount_text: strings.stage_amount_text,
+        stage_description_text: strings.stage_description_text,
+        stage_start_time_text: strings.stage_start_time_text,
+        stage_end_time_text: strings.stage_end_time_text,
         need_amount_text: strings.need_amount_text,
-        recored_text: strings.recored_text,
-        fundraiser_complite_text: strings.fundraiser_complite_text,
-        complite_time_text: strings.complite_time_text,
-        total_receviced_amount_text: strings.total_receviced_amount_text,
-        stage_info_button: strings.stage_info_button
+        user_left_amount_text: strings.user_left_amount_text,
+        agreed_count_text: strings.agreed_count_text,
+        user_can_text: strings.user_can_text,
+        agree_button: strings.agree_button,
+        refuse_button: strings.refuse_button,
+        stage_vote_text: strings.stage_vote_text,
+        user_choose_text: strings.user_choose_text,
+        thanks_text: strings.thanks_text,
+        withdraw_text: strings.withdraw_text,
+        create_withdraw_text: strings.create_withdraw_text,
+        after_withdraw_text: strings.after_withdraw_text,
+        sorry_text: strings.sorry_text
       }
     };
   }

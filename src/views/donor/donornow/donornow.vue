@@ -48,7 +48,7 @@
                 <el-container>
                   <el-header class="statuspanle" :class="{'block': !project_info.is_fundrasing_finished, 'none': project_info.is_fundrasing_finished}">{{elements.left_time_text}}: {{project_info.left_time}}, {{elements.joined_count_text}}: {{project_info.joined_count}}, {{elements.need_amount_text}}: {{project_info.need_amount}} {{unit_type}}</el-header>
                   <el-header class="statuspanle" :class="{'block': project_info.is_fundrasing_finished, 'none': !project_info.is_fundrasing_finished}">{{elements.fundraiser_complite_text}} {{elements.complite_time_text}}: {{project_info.complite_time}}, {{elements.joined_count_text}}: {{project_info.joined_count}}, {{elements.total_receviced_amount_text}}: {{project_info.total_receviced_amount}} {{unit_type}}
-                    &nbsp;&nbsp;&nbsp;<el-button @click="gotoProjectStageInfo(project.address)" type="warning" round>{{elements.stage_info_button}}</el-button>
+                    &nbsp;&nbsp;&nbsp;<el-button @click="gotoProjectStageInfo(project_info.project_address)" type="warning" round>{{elements.stage_info_button }}</el-button>
                   </el-header>
                   <el-header class="title">{{elements.recored_text}}</el-header>
                   <el-main class="record">
@@ -98,8 +98,7 @@ export default {
       return '';
     },
     gotoProjectStageInfo(projectAddress) {
-      this.$router.push({path: 'projectstageinfo', params: {project_address: projectAddress}});
-      //this.$route.params.project_address
+      this.$router.push({path: 'projectstageinfo', query: {project_address: projectAddress}});
     }
   },
   data() {
@@ -115,9 +114,6 @@ export default {
       let transfers = storage.getProjectTransfersInfoByProjectAddress(project.address).forEach(transfer => users.push(transfer.userAddress));
       let userCount = Array.from(new Set(users)).length;
       let receivedAmount = storage.getProjectTransferReceivedAmount(project.address);
-
-      let applyforusesuccessful = false;
-      let applyforusefailed = false;
       
       project_infos.push({
         project_address: project.address,

@@ -14,19 +14,23 @@ function getCurrentUserInfo() {
 }
 
 function getProjectInfoByProjectAddress(projectAddress) {
-
+    return mockData.Projects.find(project => project.address === projectAddress);
 }
 
 function getProjectInfoByCreateAddress(userAddress) {    
-    return mockData.Projects.find(project => project.creator == userAddress);
+    return mockData.Projects.find(project => project.creator === userAddress);
 }
 
 function getProjectTransfersInfoByProjectAddress(projectAddress) {
-    return mockData.Transfers.filter(transfer => transfer.projectAddress == projectAddress) || [];
+    return mockData.Transfers.filter(transfer => transfer.projectAddress === projectAddress) || [];
 }
 
 function getProjectTransferInfoById(transferId) {
 
+}
+
+function getProjectTransferCount() {
+    return mockData.Transfers.length;
 }
 
 function getAllFundrasingProjects() {
@@ -71,6 +75,10 @@ function getStageTotalCount() {
     return mockData.Stages.length;
 }
 
+function getVoteTotalCount() {
+    return mockData.StageVotes.length;
+}
+
 function getStageVotesInfo(projectAddress, stageId) {
     return mockData.StageVotes.filter(vote => vote.projectAddress === projectAddress && vote.stageId === stageId) || [];
 }
@@ -110,12 +118,14 @@ module.exports.getProjectInfoByProjectAddress = getProjectInfoByProjectAddress;
 module.exports.getProjectInfoByCreateAddress = getProjectInfoByCreateAddress;
 module.exports.getProjectTransfersInfoByProjectAddress = getProjectTransfersInfoByProjectAddress;
 module.exports.getProjectTransferInfoById = getProjectTransferInfoById;
+module.exports.getProjectTransferCount = getProjectTransferCount;
 module.exports.getProjectTransferReceivedAmount = getProjectTransferReceivedAmount;
 module.exports.getAllFundrasingProjects = getAllFundrasingProjects;
 module.exports.getStageInfo = getStageInfo;
 module.exports.getStagesInfoByProjectAddress = getStagesInfoByProjectAddress;
 module.exports.getStageInfoById = getStageInfoById;
 module.exports.getStageTotalCount = getStageTotalCount;
+module.exports.getVoteTotalCount = getVoteTotalCount;
 module.exports.getStageVotesInfo = getStageVotesInfo;
 module.exports.getStageUserVoteInfo = getStageUserVoteInfo;
 module.exports.getStageUserVoteById = getStageUserVoteById;
