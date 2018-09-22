@@ -1,9 +1,9 @@
 <style lang="less">
-    @import './ProjectStageInfo.less';
+    @import './projectstageinfo.less';
 </style>
 
 <template>
-    <div class="ProjectStageInfo">
+    <div class="projectstageinfo">
       <tlgy-header></tlgy-header>
       <el-container class="projectinfo">
         <el-header class="title">{{elements.project_text}}</el-header>
@@ -96,9 +96,7 @@ export default {
           return 'success-row';
         }
         return '';
-      }
-  },
-  methods: {
+      },
     gotoProjectStageInfo(projectAddress) {
       this.$router.push({path: 'projectstageinfo', params: {project_address: projectAddress}});
       //this.$route.params.project_address

@@ -90,15 +90,13 @@ export default {
       console.log(file, fileList);
     },
     tableRowClassName({row, rowIndex}) {
-        if (rowIndex === 1) {
-          return 'warning-row';
-        } else if (rowIndex === 3) {
-          return 'success-row';
-        }
-        return '';
+      if (rowIndex === 1) {
+        return 'warning-row';
+      } else if (rowIndex === 3) {
+        return 'success-row';
       }
-  },
-  methods: {
+      return '';
+    },
     gotoProjectStageInfo(projectAddress) {
       this.$router.push({path: 'projectstageinfo', params: {project_address: projectAddress}});
       //this.$route.params.project_address
