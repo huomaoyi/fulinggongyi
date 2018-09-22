@@ -29,6 +29,10 @@ function getProjectTransferInfoById(transferId) {
 
 }
 
+function getAllFundrasingProjects() {
+    return mockData.Projects.filter(project => project.status === 2) || [];
+}
+
 function transferAmountConvert(transfer, ignoreWithdraw = true) {
     if (transfer.operation == 0) {
         return transfer.amount;
@@ -107,6 +111,7 @@ module.exports.getProjectInfoByCreateAddress = getProjectInfoByCreateAddress;
 module.exports.getProjectTransfersInfoByProjectAddress = getProjectTransfersInfoByProjectAddress;
 module.exports.getProjectTransferInfoById = getProjectTransferInfoById;
 module.exports.getProjectTransferReceivedAmount = getProjectTransferReceivedAmount;
+module.exports.getAllFundrasingProjects = getAllFundrasingProjects;
 module.exports.getStageInfo = getStageInfo;
 module.exports.getStagesInfoByProjectAddress = getStagesInfoByProjectAddress;
 module.exports.getStageInfoById = getStageInfoById;

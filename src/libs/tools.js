@@ -10,7 +10,7 @@ function getTimeDistance(time1, time2) {
     let hour = parseInt(afterDay/(60 * 60));
     let afterHour = total - day * 24 * 60 * 60 - hour * 60 * 60;
     let min = parseInt(afterHour/60);
-    let afterMin = (total - day * 24 * 60 * 60 - hour * 60 * 60 - min * 60);
+    let afterMin = Math.round((total - day * 24 * 60 * 60 - hour * 60 * 60 - min * 60));
 
     let dayinfo = [];
     [day, hour, min, afterMin].forEach(data => dayinfo.push(fixNumberLong(data)));

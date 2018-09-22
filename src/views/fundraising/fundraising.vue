@@ -70,7 +70,6 @@ import foot from '../common/foot/foot.vue'
 
 import Vue from 'vue'
 
-const mockData = require("../../libs/mockdata.js").Data;
 const storage = require("../../libs/storage.js");
 const strings = require("../../libs/strings.js").strings;
 

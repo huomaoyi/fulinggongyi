@@ -1,6 +1,7 @@
 const ZH_CN = {
     settings: {
-        appname:"图灵公益"
+        appname:"图灵公益",
+        unit_type:"Wei"
     },
     enums:{
         transfer_operation:[
@@ -22,7 +23,7 @@ const ZH_CN = {
     login: {
         welcome: "欢迎来到",
         fundraiser_button: "我要筹款",
-        donor_button: "我要捐款",
+        donor_button: "我要捐款"
     },
     fundraising: {
         name_input: "姓名",
@@ -64,11 +65,25 @@ const ZH_CN = {
         stage_progree: "当前阶段申请进度"
     },
     donornow: {
+        amount_text: "捐款金额",
+        creator_alice_text: "筹款人昵称",
+        creator_real_name_text: "筹款姓名",
+        creator_id_number_text: "身份证号",
+        creator_phone_number_text: "联系方式",
+        creator_home_address_text: "地址",
+        project_start_time_text: "开始时间",
+        project_end_time_text:"结束时间",
+        project_detail_text:"项目描述",
+        project_description_text:"项目详情",
         project_text: "项目详情",
         left_time_text: "剩余时间",
         joined_count_text: "捐赠者人数",
         need_amount_text:"还需",
-        recored_text: "捐款记录"
+        recored_text: "捐款记录",
+        fundraiser_complite_text: "您的筹款已结束！",
+        complite_time_text: "共耗时",
+        total_receviced_amount_text:"共筹款",
+        stage_info_button: "查看阶段信息"
     }
 }
 
