@@ -8,6 +8,7 @@ import StagesInfo from '../views/fundraising/stagesinfo/stagesinfo'
 import ApplyForUsing from '../views/fundraising/applyforusing/applyforusing'
 import DonorRegister from '../views/donor/donorregister/donorregister'
 import DonorNow from '../views/donor/donornow/donornow'
+import ProjectStageInfo from '../views/donor/projectstageinfo/projectstageinfo'
 
 Vue.use(Router)
 
@@ -57,6 +58,11 @@ export default new Router({
       path: '/DonorNow',
       name: 'DonorNow',
       component: DonorNow
+    },
+    {
+      path: '/ProjectStageInfo',
+      name: 'ProjectStageInfo',
+      component: ProjectStageInfo
     }
   ]
 })

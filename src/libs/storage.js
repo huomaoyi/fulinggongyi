@@ -1,4 +1,4 @@
-const mockData = require("./mockData.js").Data;
+const mockData = require("./mockdata.js").Data;
 
 function getUserInfoByAddress(userAddress) {
     return mockData.Users.find(user => user.address === userAddress);
