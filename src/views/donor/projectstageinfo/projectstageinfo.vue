@@ -35,7 +35,7 @@
                       {{elements.agreed_count_text}}: {{1}}/{{10}}, 
                       {{elements.user_can_text}}
                       <el-button  @click="voteStage(stage.id, 1)" type="success">{{elements.agree_button}}</el-button> 
-                      <el-button  @click="voteStage(stage.id, 2)"type="danger">{{elements.refuse_button}}</el-button> 
+                      <el-button  @click="voteStage(stage.id, 2)" type="danger">{{elements.refuse_button}}</el-button> 
                       {{elements.stage_vote_text}}
                     </div>
                   </el-col>
@@ -53,7 +53,7 @@
           </el-collapse>
         </el-main>
         <el-footer class="withdraw">{{elements.withdraw_text}}
-          <el-button  @click="createWithdraw()"type="danger">{{elements.create_withdraw_text}}</el-button>
+          <el-button  @click="createWithdraw()" type="danger">{{elements.create_withdraw_text}}</el-button>
         </el-footer>
         <el-footer class="withdraw">{{elements.after_withdraw_text}}: {{10}} {{unit_type}}, {{elements.sorry_text}}</el-footer>
       </el-container>     
@@ -107,7 +107,7 @@ export default {
     let users = [];
     let transfers = storage.getProjectTransfersInfoByProjectAddress(project.address).forEach(transfer => users.push(transfer.userAddress));
     let userCount = Array.from(new Set(users)).length;
-
+    
     return {
       project_description: project.description,
       joined_count: userCount,

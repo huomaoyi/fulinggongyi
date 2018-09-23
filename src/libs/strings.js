@@ -73,8 +73,8 @@ const ZH_CN = {
         creator_home_address_text: "地址",
         project_start_time_text: "开始时间",
         project_end_time_text:"结束时间",
-        project_detail_text:"项目描述",
-        project_description_text:"项目详情",
+        project_detail_text:"项目详情",
+        project_description_text:"项目描述",
         project_text: "项目详情",
         left_time_text: "剩余时间",
         joined_count_text: "捐赠者人数",
@@ -83,7 +83,9 @@ const ZH_CN = {
         fundraiser_complite_text: "您的筹款已结束！",
         complite_time_text: "共耗时",
         total_receviced_amount_text:"共筹款",
-        stage_info_button: "查看阶段信息"
+        stage_info_button: "查看阶段信息",
+        want_to_donor_text: "我想捐款",
+        donor_now_button: "立即捐款"
     },
     projectstageinfo: {
         title_label: "项目阶段详情",

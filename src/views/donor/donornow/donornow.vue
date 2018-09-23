@@ -10,7 +10,7 @@
         <el-header class="split"></el-header>
         <el-main class="carouselelmain">
             <el-carousel indicator-position="outside">
-              <el-carousel-item v-for="project_info in project_infos" :key="project_info.address">
+              <el-carousel-item v-for="project_info in project_infos" :key="project_info.project_address">
                 <div class="projectdata">
                   <el-row>
                     <el-col :span="3"><div class="grid-content bg-purple">{{elements.project_description_text}}</div></el-col>
@@ -46,7 +46,10 @@
                   </el-row>
                 </div>
                 <el-container>
-                  <el-header class="statuspanle" :class="{'block': !project_info.is_fundrasing_finished, 'none': project_info.is_fundrasing_finished}">{{elements.left_time_text}}: {{project_info.left_time}}, {{elements.joined_count_text}}: {{project_info.joined_count}}, {{elements.need_amount_text}}: {{project_info.need_amount}} {{unit_type}}</el-header>
+                  <el-header class="donorpanle" :class="{'block': !project_info.is_fundrasing_finished, 'none': project_info.is_fundrasing_finished}">{{elements.left_time_text}}: {{project_info.left_time}}, {{elements.joined_count_text}}: {{project_info.joined_count}}, {{elements.need_amount_text}}: {{project_info.need_amount}} {{unit_type}}, {{elements.want_to_donor_text}}:
+                    <el-input name="donor_amount_input" :tag="project_info.project_address"></el-input> {{unit_type}}&nbsp;&nbsp;
+                    <el-button @click="donorAmount(project_info.project_address)" type="warning" round>{{elements.donor_now_button }}</el-button>
+                  </el-header>
                   <el-header class="statuspanle" :class="{'block': project_info.is_fundrasing_finished, 'none': !project_info.is_fundrasing_finished}">{{elements.fundraiser_complite_text}} {{elements.complite_time_text}}: {{project_info.complite_time}}, {{elements.joined_count_text}}: {{project_info.joined_count}}, {{elements.total_receviced_amount_text}}: {{project_info.total_receviced_amount}} {{unit_type}}
                     &nbsp;&nbsp;&nbsp;<el-button @click="gotoProjectStageInfo(project_info.project_address)" type="warning" round>{{elements.stage_info_button }}</el-button>
                   </el-header>
@@ -99,6 +102,27 @@ export default {
     },
     gotoProjectStageInfo(projectAddress) {
       this.$router.push({path: 'projectstageinfo', query: {project_address: projectAddress}});
+    },
+    donorAmount(projectAddress) {
+      let input_amount = 0;
+      let elements = document.getElementsByName("donor_amount_input");
+      for(var i = 0; i < elements.length; i++) {
+        if (elements[i].getAttribute("tag") == projectAddress) {
+            input_amount = elements[i].value || 0;
+            break;
+          }
+      }
+
+      if (input_amount > 0) {
+        storage.addProjectTransfer({
+        id: storage.getProjectTransferCount() + 1,
+        projectAddress: projectAddress,
+        userAddress: storage.getCurrentUserAddress(),
+        amount: input_amount,
+        time: new Date(),
+        operation: 0
+      });
+      }
     }
   },
   data() {
@@ -114,6 +138,7 @@ export default {
       let transfers = storage.getProjectTransfersInfoByProjectAddress(project.address).forEach(transfer => users.push(transfer.userAddress));
       let userCount = Array.from(new Set(users)).length;
       let receivedAmount = storage.getProjectTransferReceivedAmount(project.address);
+      let donoramount = 0;
       
       project_infos.push({
         project_address: project.address,
@@ -159,7 +184,9 @@ export default {
         fundraiser_complite_text: strings.fundraiser_complite_text,
         complite_time_text: strings.complite_time_text,
         total_receviced_amount_text: strings.total_receviced_amount_text,
-        stage_info_button: strings.stage_info_button
+        stage_info_button: strings.stage_info_button,
+        want_to_donor_text: strings.want_to_donor_text,
+        donor_now_button: strings.donor_now_button
       }
     };
   }
