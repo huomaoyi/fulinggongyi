@@ -33,6 +33,35 @@ function getProjectTransferCount() {
     return mockData.Transfers.length;
 }
 
+function getUserDonoredAmountOfProject(projectAddress, userAddress) {
+    let totalAmount = 0;
+    let transfers = mockData.Transfers.filter(transfer => transfer.projectAddress === projectAddress && transfer.userAddress === userAddress) || [];
+    let wantedTransfers = transfers.filter(transfer => transfer.operation === 0) || [];
+    wantedTransfers.forEach(transfer => totalAmount += transfer.amount);
+
+    return totalAmount;
+}
+
+function isUserWithdraw(projectAddress, userAddress) {
+    transfers = mockData.Transfers.filter(transfer => transfer.projectAddress === projectAddress && transfer.userAddress === userAddress) || [];
+    let withdrawTransfers = transfers.filter(transfer => transfer.operation === 1) || [];
+    return withdrawTransfers.length > 0;
+}
+
+function getUserLeftDonoredAmountOfProject(projectAddress, userAddress) {
+    let totalAmount = 0;
+
+    let transfers = mockData.Transfers.filter(transfer => transfer.projectAddress === projectAddress && transfer.userAddress === userAddress) || [];
+    if (isUserWithdraw(projectAddress, userAddress)) {
+        return 0;
+    }
+
+    let wantedTransfers = transfers.filter(transfer => transfer.operation === 2) || [];
+    wantedTransfers.forEach(transfer => totalAmount += transfer.amount);
+
+    return getUserDonoredAmountOfProject(projectAddress, userAddress) - wantedTransfers;
+}
+
 function getAllFundrasingProjects() {
     return mockData.Projects.filter(project => project.status === 2) || [];
 }
@@ -79,6 +108,17 @@ function getVoteTotalCount() {
     return mockData.StageVotes.length;
 }
 
+function getStageVoteResult(projectAddress, stageId) {
+    let transfers = mockData.Transfers.filter(transfer => transfer.projectAddress === projectAddress) || [];
+    let stageVotes = mockData.StageVotes.filter(vote => vote.projectAddress === projectAddress && vote.stageId === stageId) || [];
+
+    let all_users = Array.from(new Set(transfers.filter(transfer => transfer.projectAddress === projectAddress && transfer.operation !== 1).map(transfer => transfer.userAddress)));
+    let agreed_users = Array.from(new Set(stageVotes.filter(vote => vote.operation === 1).map(vote => vote.userAddress)));
+    let refuse_users = Array.from(new Set(stageVotes.filter(vote => vote.operation === 2).map(vote => vote.userAddress)));    
+
+    return [agreed_users, refuse_users, all_users];
+}
+
 function getStageVotesInfo(projectAddress, stageId) {
     return mockData.StageVotes.filter(vote => vote.projectAddress === projectAddress && vote.stageId === stageId) || [];
 }
@@ -120,7 +160,11 @@ module.exports.getProjectTransfersInfoByProjectAddress = getProjectTransfersInfo
 module.exports.getProjectTransferInfoById = getProjectTransferInfoById;
 module.exports.getProjectTransferCount = getProjectTransferCount;
 module.exports.getProjectTransferReceivedAmount = getProjectTransferReceivedAmount;
+module.exports.isUserWithdraw = isUserWithdraw;
+module.exports.getUserDonoredAmountOfProject = getUserDonoredAmountOfProject;
+module.exports.getUserLeftDonoredAmountOfProject = getUserLeftDonoredAmountOfProject;
 module.exports.getAllFundrasingProjects = getAllFundrasingProjects;
+module.exports.getStageVoteResult = getStageVoteResult;
 module.exports.getStageInfo = getStageInfo;
 module.exports.getStagesInfoByProjectAddress = getStagesInfoByProjectAddress;
 module.exports.getStageInfoById = getStageInfoById;

@@ -4,7 +4,8 @@ const data = {
     DonateBUser: "0x4256bc4f0eb5685936b55c13d40d0012dca409b2",
     DonateCUser: "0x4256bc4f0eb5685936b55c13d40d0012dca409c2",
     DonateDUser: "0x4256bc4f0eb5685936b55c13d40d0012dca409d2",
-    CurrentUser: "0x4256bc4f0eb5685936b55c13d40d0012dca409f2",
+    //CurrentUser: "0x4256bc4f0eb5685936b55c13d40d0012dca409f2",
+    CurrentUser: "0x4256bc4f0eb5685936b55c13d40d0012dca409a2",
     Users: [
         {
             userName: "yiyanwannian",

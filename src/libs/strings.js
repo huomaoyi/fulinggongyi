@@ -97,7 +97,7 @@ const ZH_CN = {
         stage_description_text: "描述",
         stage_start_time_text: "开始时间",
         stage_end_time_text: "结束时间",
-        need_amount_text: "还需金额",
+        stage_voting_text: "阶段投票进行中",
         user_left_amount_text: "您的剩余金额",
         agreed_count_text: "本阶段已同意人数",
         user_can_text: "您可以",
