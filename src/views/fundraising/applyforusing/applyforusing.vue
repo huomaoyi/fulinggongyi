@@ -16,7 +16,7 @@
                 <el-input v-model="form.amount"></el-input>
               </el-form-item>
               <el-form-item label="截止时间">
-                <el-input v-model="form.endTime"></el-input>
+                <el-date-picker class="moveleft" v-model="form.endTime" type="datetime" align="right" placeholder="选择日期"></el-date-picker>
               </el-form-item>
               <el-form-item label="费用使用说明">            
                 <el-input type="textarea" :rows="2" v-model="form.description"/>

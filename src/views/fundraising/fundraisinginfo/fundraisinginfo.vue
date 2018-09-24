@@ -7,7 +7,7 @@
       <tlgy-header></tlgy-header>
         <el-container style="height:250px;">
             <el-header class="title">{{elements.title_label}}
-              <el-button class="gotostageinfo" @click="gotoStagesInfo" type="warning" round>{{elements.stage_info_button}} ></el-button>
+              <el-button  :class="{'block': applyForUseSuccessful, 'none': !applyForUseSuccessful}" class="gotostageinfo" @click="gotoStagesInfo" type="warning" round>{{elements.stage_info_button}} ></el-button>
             </el-header>
             <el-main style="padding:0px; height:200px; margin:0 auto;">
                 <el-container class="moveleft halfwidth panle" style="margin-right:10px;">
@@ -138,7 +138,7 @@ export default {
         amountProgess: amountProgess,
         timeProgess: timeProgess,
         tableData: transferInfos,
-        applyForUseSuccessful: true,// applyforusesuccessful,
+        applyForUseSuccessful: applyforusesuccessful,
         applyForUseFailed: applyforusefailed,
         elements: {
           title_label: strings.title_label,

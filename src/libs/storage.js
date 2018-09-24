@@ -63,7 +63,7 @@ function getUserLeftDonoredAmountOfProject(projectAddress, userAddress) {
 }
 
 function getAllFundrasingProjects() {
-    return mockData.Projects.filter(project => project.status === 2) || [];
+    return mockData.Projects.filter(project => project.status === 0) || [];
 }
 
 function transferAmountConvert(transfer, ignoreWithdraw = true) {

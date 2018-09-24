@@ -55,13 +55,12 @@
                   </el-header>
                   <el-header class="title">{{elements.recored_text}}</el-header>
                   <el-main class="record">
-                      <el-table :data="project_info.stages" style="width:100%" :row-class-name="tableRowClassName">
-                        <el-table-column prop="index" label="阶段" />
-                        <el-table-column prop="title" label="标题" />
+                      <el-table :data="project_info.transfers" style="width:100%" :row-class-name="tableRowClassName">
+                        <el-table-column prop="time" label="时间" width="180" />
+                        <el-table-column prop="user_name" label="捐款人" width="100" />
+                        <el-table-column prop="userAddress" label="地址" width="400" />
                         <el-table-column prop="amount" label="金额"/>
-                        <el-table-column prop="startTime" label="开始时间"/>
-                        <el-table-column prop="endTime" label="结束时间"/>
-                        <el-table-column prop="status_text" label="状态"/>
+                        <el-table-column prop="operation_text" label="操作"/>
                       </el-table>
                   </el-main>
                 </el-container>
@@ -131,11 +130,14 @@ export default {
     
     projects.forEach(project => {
       let user = storage.getUserInfoByAddress(project.creator);
-      let stages = storage.getStagesInfoByProjectAddress(project.address);
-      stages.map(stage => stage.status_text = stringsenums.stage_status[stage.status]);
+      let transfers = storage.getProjectTransfersInfoByProjectAddress(project.address);
+      transfers.map(transfer => {
+        transfer.user_name = storage.getUserInfoByAddress(transfer.userAddress).userName;
+        transfer.operation_text = stringsenums.transfer_operation[transfer.operation];
+      });
 
       let users = [];
-      let transfers = storage.getProjectTransfersInfoByProjectAddress(project.address).forEach(transfer => users.push(transfer.userAddress));
+      transfers.forEach(transfer => users.push(transfer.userAddress));
       let userCount = Array.from(new Set(users)).length;
       let receivedAmount = storage.getProjectTransferReceivedAmount(project.address);
       let donoramount = 0;
@@ -158,7 +160,7 @@ export default {
         need_amount: project.amount - receivedAmount,
         total_receviced_amount: receivedAmount,
         is_fundrasing_finished: project.status === 2,
-        stages: stages
+        transfers: transfers
       });
     });
     

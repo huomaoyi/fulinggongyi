@@ -108,7 +108,7 @@ const data = {
             amount: 100000,
             startTime: "2018-08-08 12:00:53",
             endTime: "2018-08-28 12:00:00",                    
-            status:2 //0:筹款中, 1:已完成, 2:结束
+            status:1 //0:筹款中, 1:已完成, 2:结束
         },
         {   //for someone will withdraw after successful
             address: "0x4256bc4f0eb5685936b55c13d40d0012dca409f6",
@@ -475,7 +475,7 @@ const data = {
             projectAddress: "0x4256bc4f0eb5685936b55c13d40d0012dca409f7",
             userAddress: "0x4256bc4f0eb5685936b55c13d40d0012dca409a2",
             time: "2018-08-29 13:00:53",
-            operation: 1 //0: 未处理, 1: 同意, 2: 拒绝
+            operation: 0 //0: 未处理, 1: 同意, 2: 拒绝
         },
         {
             id: 22,
