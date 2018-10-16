@@ -20,11 +20,13 @@
     "postcss-url": "^7.3.2",
     "qrcode": "^1.2.0",
     "to": "^0.2.9",
+    "truffle-contract": "^3.0.6",
     "update": "^0.7.4",
     "vue": "^2.5.11",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "web3": "^1.0.0-beta.36"
   },
   "browserslist": [
     "> 1%",

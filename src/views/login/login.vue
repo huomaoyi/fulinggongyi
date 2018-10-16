@@ -17,6 +17,7 @@
 
 <script>
 import Cookies from 'js-cookie';
+import Users from '../../js/users'
 import fundraisingVue from '../fundraising/fundraising.vue';
 
 const storage = require("../../libs/storage.js");
@@ -38,9 +39,18 @@ export default {
             }
         }
     },
+    beforeCreate: function () {
+      Users.init()
+    },
     methods: {
         gofundraising () {
-            this.$router.push({path: 'fundraising'});
+            Users.create("TestTx").then(tx => {
+                console.log(tx)
+                self.$router.push('/')
+            }).catch(err => {
+                console.log(err)
+            })
+            //this.$router.push({path: 'fundraising'});
         },
         goregister () {
             this.$router.push({path: 'donornow'});
