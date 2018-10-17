@@ -12,6 +12,7 @@
   "dependencies": {
     "autoprefixer": "^8.5.1",
     "element-ui": "^2.4.0",
+    "ganache-core": "^2.2.1",
     "js-cookie": "^2.2.0",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",

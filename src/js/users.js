@@ -12,7 +12,21 @@ const Users = {
 
     return new Promise(function (resolve, reject) {
       self.contract = contract(UsersContract)
-      self.contract.setProvider(window.web3.currentProvider)
+      self.contract.setProvider(new Web3.providers.HttpProvider('http://localhost:7545'))
+
+      web3.eth.getAccounts(function (err, accounts) {
+        if (err != null) {
+          alert('There was an error fetching your accounts.')
+          return
+        }
+  
+        if (accounts.length === 0) {
+          alert("Couldn't get any accounts! Make sure your Ethereum client is configured correctly.")
+          return
+        }
+        
+        web3.eth.defaultAccount = accounts[0]
+      })
 
       self.contract.deployed().then(instance => {
         self.instance = instance
@@ -56,9 +70,10 @@ const Users = {
     let self = this
 
     return new Promise((resolve, reject) => {
+      console.log("address is " + web3.eth.defaultAccount)
       self.instance.create(
         pseudo,
-        {from: window.web3.eth.accounts[0]}
+        {from: web3.eth.defaultAccount}
       ).then(tx => {
         resolve(tx)
       }).catch(err => {
