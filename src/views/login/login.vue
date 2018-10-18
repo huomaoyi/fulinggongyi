@@ -44,13 +44,13 @@ export default {
     },
     methods: {
         gofundraising () {
-            Users.create("TestTx").then(tx => {
-                console.log(tx)
-                self.$router.push('/')
-            }).catch(err => {
-                console.log(err)
-            })
-            //this.$router.push({path: 'fundraising'});
+            // Users.create("TestTx").then(tx => {
+            //     console.log(tx)
+            //     self.$router.push('/')
+            // }).catch(err => {
+            //     console.log(err)
+            // })
+            this.$router.push({path: 'fundraising'});
         },
         goregister () {
             this.$router.push({path: 'donornow'});

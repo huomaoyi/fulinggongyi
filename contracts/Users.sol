@@ -1,35 +1,39 @@
-pragma solidity ^0.4.15;
+pragma solidity ^0.4.22;
 
-contract Users {
+contract User {
 
-  mapping(address => bytes32) public users;
+    string public userName;
+    address public userAddress;
+    bytes1 public userType;
+    string public realName;
+    string public idNumber;
+    string public gender;
+    string public phoneNumber;
+    string public homeAddress;
 
-  event UserCreated(address indexed _address, bytes32 _pseudo);
-  event UserDestroyed(address indexed _address);
+    constructor(
+        string _userName,
+        address _userAddress,
+        bytes1 _userType,
+        string _realName,
+        string _idNumber,
+        string _gender,
+        string _phoneNumber,
+        string _homeAddress
+    ) 
+    public 
+    {
+        userName = _userName;
+        userAddress = _userAddress;
+        userType = _userType;
+        realName = _realName;
+        idNumber = _idNumber;
+        gender = _gender;
+        phoneNumber = _phoneNumber;
+        homeAddress = _homeAddress;
+    }
 
-  function exists (address _address) public constant returns (bool _exists) {
-    return (users[_address] != bytes32(0));
-  }
-
-  function authenticate () public constant returns (bytes32 _pseudo) {
-    require(exists(msg.sender));
-    return (users[msg.sender]);
-  }
-
-  function create (bytes32 _pseudo) public {
-    users[msg.sender] = _pseudo ;
-    UserCreated(msg.sender, _pseudo);
-  }
-
-  function destroy () public {
-    require(exists(msg.sender));
-    delete users[msg.sender];
-    UserDestroyed(msg.sender);
-  }
-
-  function get (address _address) public constant returns(bytes32 _pseudo) {
-    require(exists(_address));
-    return (users[_address]);
-  }
-
+    // function setPhoneNumber(string _phoneNumber) public {
+    //     phoneNumber = _phoneNumber;
+    // }
 }
