@@ -1,39 +1,72 @@
-pragma solidity ^0.4.22;
+pragma solidity ^0.4.24;
 
-contract User {
+import "./Models.sol";
 
-    string public userName;
-    address public userAddress;
-    bytes1 public userType;
-    string public realName;
-    string public idNumber;
-    string public gender;
-    string public phoneNumber;
-    string public homeAddress;
+contract Users {
+  
+    // struct User {
+    //     string userName;
+    //     address userAddress;
+    //     bytes1 userType;
+    //     string realName;
+    //     string idNumber;
+    //     string gender;
+    //     string phoneNumber;
+    //     string homeAddress;
+    // }
 
-    constructor(
+    mapping (address => Models.User) public userInfos;
+
+    event UserCreatedOrUpdate(address indexed _userAddress);
+    
+    function getUserByUserAddress(address _userAddress)
+        public
+        view
+        returns (string, address, bytes1, string, string, string, string, string) 
+    {
+        require(userInfos[_userAddress].userAddress != 0);
+        Models.User storage userInfo = userInfos[_userAddress];
+
+        return (
+            userInfo.userName, 
+            userInfo.userAddress,
+            userInfo.userType,
+            userInfo.realName,
+            userInfo.idNumber,
+            userInfo.gender,
+            userInfo.phoneNumber,
+            userInfo.homeAddress
+        );
+    }
+
+    function addUser(
         string _userName,
-        address _userAddress,
         bytes1 _userType,
         string _realName,
         string _idNumber,
         string _gender,
         string _phoneNumber,
         string _homeAddress
-    ) 
-    public 
+    )
+        public
+        returns (address)
     {
-        userName = _userName;
-        userAddress = _userAddress;
-        userType = _userType;
-        realName = _realName;
-        idNumber = _idNumber;
-        gender = _gender;
-        phoneNumber = _phoneNumber;
-        homeAddress = _homeAddress;
-    }
+        address _userAddress = msg.sender;
+        
+        Models.User memory userInfo = Models.User(
+           _userName,
+           _userAddress,
+           _userType,
+           _realName,
+           _idNumber,
+           _gender,
+           _phoneNumber,
+           _homeAddress
+        );        
 
-    // function setPhoneNumber(string _phoneNumber) public {
-    //     phoneNumber = _phoneNumber;
-    // }
+        userInfos[_userAddress] = userInfo;
+        emit UserCreatedOrUpdate(_userAddress);
+
+        return _userAddress;
+    }
 }
